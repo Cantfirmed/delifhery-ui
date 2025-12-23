@@ -1,0 +1,17 @@
+<form (submit)="onSubmit()" class="flex flex-col max-w-4xl items-center">
+  <div class="gap-4">
+    <fieldset class="fieldset">
+      <select [field]="CIForm.type">
+        <option value="" disabled selected>Select Contact Type</option>
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+      </select>
+    </fieldset>
+    @if (CIForm.type().value() === 'email') {
+      <input type="text" placeholder="mm@mail.com" [field]="CIForm.value" />
+    } @else if (CIForm.type().value() === 'phone') {
+      <input type="text" placeholder="+123456789" [field]="CIForm.value" />
+    }
+  </div>
+  <button class="btn" type="submit">Add Contact Information</button>
+</form>
