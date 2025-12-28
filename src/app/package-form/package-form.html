@@ -1,40 +1,48 @@
-<form class="flex flex-row flex-4 max-w-4xl items-center" (submit)="onSubmit()">
+<form class="flex flex-row flex-4 max-w-4xl items-center" (submit)="onSubmit($event)">
   <div class="fgap-4">
-    <span>Absenderadresse</span>
+    <span>Sender</span>
+    <label class="input">
+      <span class="label">Name</span>
+      <input type="text" placeholder="Sender Name" [field]="packageForm.sender.name" />
+    </label>
     <label class="input">
       <span class="label">Country</span>
-      <input type="text" placeholder="AT" [field]="packageForm.fromCountry" />
+      <input type="text" placeholder="AT" [field]="packageForm.sender.country" />
     </label>
     <label class="input">
       <span class="label">ZIP Code</span>
-      <input type="number" placeholder="1234" [field]="packageForm.fromZip" />
+      <input type="number" placeholder="1234" [field]="packageForm.sender.zip" />
     </label>
     <label class="input">
       <span class="label">City</span>
-      <input type="text" placeholder="City" [field]="packageForm.fromCity" />
+      <input type="text" placeholder="City" [field]="packageForm.sender.city" />
     </label>
     <label class="input">
       <span class="label">Street</span>
-      <input type="text" placeholder="Street" [field]="packageForm.fromStreet" />
+      <input type="text" placeholder="Street" [field]="packageForm.sender.street" />
     </label>
   </div>
   <div class="gap-4 mt-4">
-    <span>Empfängeradresse</span>
+    <span>Recipient</span>
+    <label class="input">
+      <span class="label">Name</span>
+      <input type="text" placeholder="Recipient Name" [field]="packageForm.recipient.name" />
+    </label>
     <label class="input">
       <span class="label">Country</span>
-      <input type="text" placeholder="AT" [field]="packageForm.toCountry" />
+      <input type="text" placeholder="AT" [field]="packageForm.recipient.country" />
     </label>
     <label class="input">
       <span class="label">ZIP Code</span>
-      <input type="number" placeholder="1234" [field]="packageForm.toZip" />
+      <input type="number" placeholder="1234" [field]="packageForm.recipient.zip" />
     </label>
     <label class="input">
       <span class="label">City</span>
-      <input type="text" placeholder="City" [field]="packageForm.toCity" />
+      <input type="text" placeholder="City" [field]="packageForm.recipient.city" />
     </label>
     <label class="input">
       <span class="label">Street</span>
-      <input type="text" placeholder="Street" [field]="packageForm.toStreet" />
+      <input type="text" placeholder="Street" [field]="packageForm.recipient.street" />
     </label>
   </div>
   <div class="gap-4 mt-4">
@@ -57,6 +65,5 @@
     </label>
   </div>
   <br />
-  <!-- Depending on where this button is used this should either be calculate price or create delivery -->
-  <button class="btn" type="submit">Absenden</button>
+  <button class="btn" type="button">Absenden</button>
 </form>

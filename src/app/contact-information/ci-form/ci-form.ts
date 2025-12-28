@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { email, Field, form, required } from '@angular/forms/signals';
+import { ContactInformationModel } from '../../../shared/models/models';
 
 @Component({
   selector: 'app-ci-form',
@@ -8,8 +9,10 @@ import { email, Field, form, required } from '@angular/forms/signals';
   styleUrl: './ci-form.css',
 })
 export class CiForm {
-  CIModel = signal({
-    type: '',
+  submitForm = output<ContactInformationModel>();
+
+  CIModel = signal<ContactInformationModel>({
+    type: 'Email',
     value: '',
   });
 
@@ -20,10 +23,12 @@ export class CiForm {
     email(fieldPath.value);
   });
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
     if (this.CIForm().valid()) {
-      const credentials = this.CIForm();
+      const credentials = this.CIModel();
       console.log('Submitting:', credentials);
+      this.submitForm.emit(credentials);
     }
   }
 }

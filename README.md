@@ -23,6 +23,16 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 - Tailwind CSS
 - DaisyUI
 
+## Aufbau
+
+- Angular Components in src/app
+- Alles andere in src/shared
+  - models: DTOs als interface models
+  - auth: Alles keycloak-js
+    - Meiste kopiert aus einem Medium Blog
+    - angular-keycloak wurde noch nicht auf Angular 21 geupdated deswegen einfach nur keycloak-js
+  - services: Services
+
 ## Development server
 
 To start a local development server, run:

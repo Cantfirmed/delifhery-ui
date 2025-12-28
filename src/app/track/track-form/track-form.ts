@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { form, Field, required } from '@angular/forms/signals';
+import { Component, output, signal } from '@angular/core';
+import { Field, form, required } from '@angular/forms/signals';
+import { TrackingModel } from '../../../shared/models/models';
 
 @Component({
   selector: 'app-track-form',
@@ -8,20 +9,23 @@ import { form, Field, required } from '@angular/forms/signals';
   styleUrl: './track-form.css',
 })
 export class TrackForm {
-  trackingModel = signal({
+  submitTracking = output<TrackingModel>();
+
+  trackingModel = signal<TrackingModel>({
     zipCode: 0,
-    trackingNumber: 0,
+    trackingId: 0,
   });
 
   trackingForm = form(this.trackingModel, (fieldPath) => {
-    required(fieldPath.trackingNumber, { message: 'Tracking number is required' });
+    required(fieldPath.trackingId, { message: 'Tracking number is required' });
     required(fieldPath.zipCode, { message: 'Zip code is required' });
   });
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
     if (this.trackingForm().valid()) {
       const credentials = this.trackingModel();
-      console.log('Submitting:', credentials);
+      this.submitTracking.emit(credentials);
     }
   }
 }

@@ -1,1 +1,24 @@
-<p>deliver works!</p>
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Register new package!</h1>
+
+  <app-package-form (submitPackage)="onRegister($event)"></app-package-form>
+
+  @if (delivery() !== null) {
+    <div class="mt-6 p-4 bg-base-200 rounded-lg shadow-md">
+      <h2 class="text-xl">
+        <span>Your package has been registered successfully!</span><br />
+        <span class="font-bold text-primary"
+          >Tracking Number: {{ delivery()?.trackingNumber }}</span
+        >
+        <br />
+        <span>Label:</span>
+        <!-- base 64 to image -->
+        <img
+          [src]="'data:image/png;base64,' + delivery()?.labelBase64"
+          alt="Package Label"
+          class="mt-2"
+        />
+      </h2>
+    </div>
+  }
+</div>

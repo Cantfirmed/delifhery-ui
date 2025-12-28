@@ -1,2 +1,17 @@
-<!-- Show all Contact Information -->
-<app-ci-form></app-ci-form>
+<div>
+  <h1 class="text-2xl font-bold mb-4">Contact Information</h1>
+  <ul class="list bg-base-100 rounded-box shadow-md">
+    @for (ci of allContactInformation(); track ci.value) {
+      <li class="list-row">
+        <span>{{ ci.type }}</span>
+        <p>{{ ci.value }}</p>
+      </li>
+    } @empty {
+      <li>There are no items.</li>
+    }
+  </ul>
+</div>
+
+<div>
+  <app-ci-form (submitForm)="createNew($event)"></app-ci-form>
+</div>

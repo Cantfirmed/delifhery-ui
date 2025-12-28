@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { Field, form, required } from '@angular/forms/signals';
+import { PackageModel } from '../../shared/models/models';
 
 @Component({
   selector: 'app-package-form',
@@ -8,15 +9,23 @@ import { Field, form, required } from '@angular/forms/signals';
   styleUrl: './package-form.css',
 })
 export class PackageForm {
-  packageModel = signal({
-    fromZip: 0,
-    fromCountry: '',
-    fromCity: '',
-    fromStreet: '',
-    toZip: 0,
-    toCountry: '',
-    toCity: '',
-    toStreet: '',
+  submitPackage = output<PackageModel>();
+
+  packageModel = signal<PackageModel>({
+    sender: {
+      name: '',
+      zip: 0,
+      country: '',
+      city: '',
+      street: '',
+    },
+    recipient: {
+      name: '',
+      zip: 0,
+      country: '',
+      city: '',
+      street: '',
+    },
     weight: 0.0,
     width: 0.0,
     height: 0.0,
@@ -24,14 +33,20 @@ export class PackageForm {
   });
 
   packageForm = form(this.packageModel, (fieldPath) => {
-    required(fieldPath.fromCity);
-    required(fieldPath.fromZip);
+    // Add more validations
+    required(fieldPath.sender.city, {
+      message: 'City is required',
+    });
+    required(fieldPath.sender.zip, {
+      message: 'ZIP code is required',
+    });
   });
 
-  onSubmit() {
+  onSubmit(event: Event) {
+    event.preventDefault();
     if (this.packageForm().valid()) {
       const credentials = this.packageModel();
-      console.log('Submitting:', credentials);
+      this.submitPackage.emit(credentials);
     }
   }
 }

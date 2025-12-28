@@ -1,9 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { DeliveryService } from '../../shared/services/delivery.service';
+import { DeliveryModel, PackageModel } from '../../shared/models/models';
+import { PackageForm } from '../package-form/package-form';
 
 @Component({
   selector: 'app-deliver',
-  imports: [],
+  imports: [PackageForm],
   templateUrl: './deliver.html',
   styleUrl: './deliver.css',
 })
-export class Deliver {}
+export class Deliver {
+  private deliveryService = inject(DeliveryService);
+  delivery = signal<DeliveryModel | null>(null);
+
+  onRegister(packageData: PackageModel) {
+    this.deliveryService.registerPackage(packageData).subscribe({
+      next: (delivery) => this.delivery.set(delivery),
+      // Show errors in UI with daisyUI later
+      error: (err) => console.error('Error calculating price:', err),
+    });
+  }
+}
