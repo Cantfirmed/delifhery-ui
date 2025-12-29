@@ -1,18 +1,30 @@
-<form (submit)="onSubmit($event)" class="flex flex-col max-w-4xl items-center">
-  <div class="gap-4">
-    <label class="select">
+<div class="flex-1">
+  <h2 class="text-2xl font-bold mb-4">Add Contact Information</h2>
+</div>
+<form (submit)="onSubmit($event)" class="flex flex-col max-w-4xl">
+  <div class="flex flex-col md:flex-row gap-4 mb-6 items-end">
+    <label class="select flex-1">
       <span class="label">Type</span>
       <select [field]="CIForm.type">
         <option value="" disabled selected>Select Contact Type</option>
         <option value="Email">Email</option>
-        <option value="Phone">Phone</option>
+        <option value="PhoneNumber">Phone</option>
       </select>
     </label>
+
     @if (CIForm.type().value() === 'Email') {
-      <input type="text" placeholder="mm@mail.com" [field]="CIForm.value" />
-    } @else if (CIForm.type().value() === 'Phone') {
-      <input type="text" placeholder="+123456789" [field]="CIForm.value" />
+      <label class="flex-1">
+        <span class="label">Email Address</span>
+        <input class="input w-full" type="text" placeholder="mm@mail.com" [field]="CIForm.value" />
+      </label>
+    } @else if (CIForm.type().value() === 'PhoneNumber') {
+      <label class="flex-1">
+        <span class="label">Phone Number</span>
+        <input class="input w-full" type="text" placeholder="+123456789" [field]="CIForm.value" />
+      </label>
     }
   </div>
-  <button class="btn" type="submit">Add Contact Information</button>
+  <div class="flex justify-center">
+    <button class="btn btn-primary px-8" type="submit">Create</button>
+  </div>
 </form>

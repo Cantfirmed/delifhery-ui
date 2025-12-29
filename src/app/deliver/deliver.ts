@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
+import { DeliveryCreateModel, DeliveryModel, PackageModel } from '../../shared/models/models';
 import { DeliveryService } from '../../shared/services/delivery.service';
-import { DeliveryModel, PackageModel } from '../../shared/models/models';
 import { PackageForm } from '../package-form/package-form';
 
 @Component({
@@ -14,10 +14,13 @@ export class Deliver {
   delivery = signal<DeliveryModel | null>(null);
 
   onRegister(packageData: PackageModel) {
-    this.deliveryService.registerPackage(packageData).subscribe({
+    const dc: DeliveryCreateModel = {
+      package: packageData,
+    };
+    this.deliveryService.registerPackage(dc).subscribe({
       next: (delivery) => this.delivery.set(delivery),
       // Show errors in UI with daisyUI later
-      error: (err) => console.error('Error calculating price:', err),
+      error: (err) => console.error('Error registering package:', err),
     });
   }
 }

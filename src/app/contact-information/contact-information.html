@@ -1,17 +1,31 @@
-<div>
-  <h1 class="text-2xl font-bold mb-4">Contact Information</h1>
-  <ul class="list bg-base-100 rounded-box shadow-md">
-    @for (ci of allContactInformation(); track ci.value) {
-      <li class="list-row">
-        <span>{{ ci.type }}</span>
-        <p>{{ ci.value }}</p>
-      </li>
-    } @empty {
-      <li>There are no items.</li>
-    }
-  </ul>
-</div>
+<div class="container mx-auto p-4">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    
+    <!-- Left Card: Existing Info -->
+    <div class="card w-full shadow-sm border bg-base-100">
+      <div class="card-body">
+        <h2 class="card-title mb-4">Your Contact Information</h2>
+        <ul class="list bg-base-100 rounded-box w-full">
+          @for (ci of allContactInformation(); track ci.value) {
+            <li class="list-row flex items-center p-3 border-b border-base-200 last:border-none">
+              <div class="flex flex-col">
+                <span class="text-xs font-bold uppercase opacity-60">{{ ci.type }}</span>
+                <span class="text-lg">{{ ci.value }}</span>
+              </div>
+            </li>
+          } @empty {
+             <li class="p-4 text-center opacity-60">No contact information saved yet.</li>
+          }
+        </ul>
+      </div>
+    </div>
 
-<div>
-  <app-ci-form (submitForm)="createNew($event)"></app-ci-form>
+    <!-- Right Card: Form -->
+    <div class="card w-full shadow-sm border bg-base-100">
+      <div class="card-body">
+         <app-ci-form (submitForm)="createNew($event)"></app-ci-form>
+      </div>
+    </div>
+
+  </div>
 </div>

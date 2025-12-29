@@ -14,17 +14,19 @@ export class PackageForm {
   packageModel = signal<PackageModel>({
     sender: {
       name: '',
-      zip: 0,
+      zipCode: 0,
       country: '',
       city: '',
       street: '',
+      state: '',
     },
     recipient: {
       name: '',
-      zip: 0,
+      zipCode: 0,
       country: '',
       city: '',
       street: '',
+      state: '',
     },
     weight: 0.0,
     width: 0.0,
@@ -37,7 +39,7 @@ export class PackageForm {
     required(fieldPath.sender.city, {
       message: 'City is required',
     });
-    required(fieldPath.sender.zip, {
+    required(fieldPath.sender.zipCode, {
       message: 'ZIP code is required',
     });
   });

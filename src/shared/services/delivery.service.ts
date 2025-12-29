@@ -1,7 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DeliveryModel, PackageModel, PriceModel, TrackingModel } from '../models/models';
+import {
+  DeliveryCreateModel,
+  DeliveryModel,
+  PackageModel,
+  PriceModel,
+  TrackingModel,
+} from '../models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +29,7 @@ export class DeliveryService {
     );
   }
 
-  registerPackage(packageData: PackageModel): Observable<DeliveryModel> {
+  registerPackage(packageData: DeliveryCreateModel): Observable<DeliveryModel> {
     return this.http.post<DeliveryModel>(`${this.apiUrl}/delivery`, packageData);
   }
 }

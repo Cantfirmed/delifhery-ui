@@ -1,35 +1,37 @@
 // Maybe split up these in different files later if I remember...
 // These are all the DTOs needed for communication with the backend
 
+export interface Address {
+  name: string;
+  zipCode: number;
+  country: string;
+  city: string;
+  street: string;
+  state: string;
+}
+
 export interface PackageModel {
-  sender: {
-    name: string;
-    zip: number;
-    country: string;
-    city: string;
-    street: string;
-  };
-  recipient: {
-    name: string;
-    zip: number;
-    country: string;
-    city: string;
-    street: string;
-  };
+  sender: Address;
+  recipient: Address;
   weight: number;
   width: number;
   height: number;
   length: number;
 }
 
+export interface DeliveryCreateModel {
+  package: PackageModel;
+}
+
 export interface DeliveryModel {
   id: number;
-  trackingNumber: number;
+  trackingId: number;
+  price: number;
   createdById: number;
   package: PackageModel;
   contactInformation: ContactInformationModel;
-  status: DeliveryStateModel;
-  labelBase64: string; // PDF as base64 string
+  currentState: DeliveryStateModel;
+  label: string;
   paymentUrl: string;
 }
 
@@ -37,11 +39,11 @@ export interface DeliveryStateModel {
   id: number | null;
   createdDate: string | null;
   value: string | null; // Additional info
-  status: 'Registered' | 'In Transit' | 'Delivered';
+  state: 'Registered' | 'In Transit' | 'Delivered';
 }
 
 export interface ContactInformationModel {
-  type: 'Email' | 'Phone';
+  type: 'Email' | 'PhoneNumber';
   value: string;
 }
 

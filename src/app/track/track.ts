@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
-import { TrackForm } from './track-form/track-form';
 import { DeliveryModel, TrackingModel } from '../../shared/models/models';
 import { DeliveryService } from '../../shared/services/delivery.service';
+import { TrackForm } from './track-form/track-form';
 
 @Component({
   selector: 'app-track',

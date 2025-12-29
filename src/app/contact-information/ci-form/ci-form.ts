@@ -1,5 +1,5 @@
 import { Component, output, signal } from '@angular/core';
-import { email, Field, form, required } from '@angular/forms/signals';
+import { Field, form, required } from '@angular/forms/signals';
 import { ContactInformationModel } from '../../../shared/models/models';
 
 @Component({
@@ -20,7 +20,10 @@ export class CiForm {
     required(fieldPath.type, {
       message: 'Type is required',
     });
-    email(fieldPath.value);
+    // This should only validate email if type is email
+    // email(fieldPath.value, {
+    //   message: 'Please enter a valid email address',
+    // });
   });
 
   onSubmit(event: Event) {

@@ -1,11 +1,17 @@
-<div class="container mx-auto p-4">
-  <h1 class="text-2xl font-bold mb-4">Calculate Price</h1>
-  
-  <app-package-form (submitPackage)="onCalculate($event)"></app-package-form>
+<div class="container mx-auto p-4 max-w-6xl">
+  <h1 class="text-3xl font-bold mb-8 text-center">Calculate Price</h1>
+  <div class="card bg-base-100 shadow-sm border border-base-300 mb-8">
+    <div class="card-body">
+      <app-package-form (submitPackage)="onCalculate($event)"></app-package-form>
+    </div>
+  </div>
 
   @if (price() !== null) {
     <div class="mt-6 p-4 bg-base-200 rounded-lg shadow-md">
-      <h2 class="text-xl">Calculated Price: <span class="font-bold text-primary">{{ price() | currency:'EUR' }}</span></h2>
+      <h2 class="text-xl">
+        Calculated Price:
+        <span class="font-bold text-primary">{{ price() | currency: 'EUR' }}</span>
+      </h2>
     </div>
   }
 </div>

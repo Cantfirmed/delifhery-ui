@@ -7,7 +7,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "compodoc": "npx compodoc -p tsconfig.doc.json",
+    "compodoc:build": "compodoc -p tsconfig.doc.json",
+    "compodoc:build-and-serve": "compodoc -p tsconfig.doc.json -s --port 8082",
+    "compodoc:serve": "compodoc -s --port 8082"
   },
   "prettier": {
     "printWidth": 100,
@@ -38,6 +42,7 @@
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.4",
     "@angular/compiler-cli": "^21.0.0",
+    "@compodoc/compodoc": "^1.1.32",
     "@tailwindcss/postcss": "^4.1.12",
     "angular-eslint": "21.1.0",
     "daisyui": "^5.5.14",
