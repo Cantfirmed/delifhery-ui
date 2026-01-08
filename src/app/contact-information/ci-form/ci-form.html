@@ -17,6 +17,13 @@
         <span class="label">Email Address</span>
         <input class="input w-full" type="text" placeholder="mm@mail.com" [field]="CIForm.value" />
       </label>
+      @if (CIForm.value().invalid()) {
+        <ul>
+          @for (error of CIForm.value().errors(); track error) {
+            <li class="text-sm text-error">- {{ error.message }}</li>
+          }
+        </ul>
+      }
     } @else if (CIForm.type().value() === 'PhoneNumber') {
       <label class="flex-1">
         <span class="label">Phone Number</span>

@@ -1,9 +1,21 @@
 <div class="container mx-auto p-4 max-w-6xl">
   <h1 class="text-3xl font-bold mb-8 text-center">Register Package</h1>
+  <div class="card">
+    <div class="card-body">
+      <p class="text text-center">
+        Fill out the <strong>package details</strong> form below to register your package for
+        delivery.
+      </p>
+    </div>
+  </div>
+
   @if (!delivery()) {
     <div class="card bg-base-100 shadow-sm border border-base-300 mb-8">
       <div class="card-body">
-        <app-package-form (submitPackage)="onRegister($event)"></app-package-form>
+        <app-package-form
+          [initialData]="packageData()"
+          (submitPackage)="onRegister($event)"
+        ></app-package-form>
       </div>
     </div>
   }
@@ -48,7 +60,6 @@
 
         <div class="space-y-4">
           <h3 class="font-semibold text-base-content/70">Your Shipping Label:</h3>
-          <!-- Price + Payment URL -->
           <div
             class="bg-white p-4 rounded-xl border border-base-300 shadow-lg mx-auto inline-block"
           >
@@ -79,6 +90,9 @@
             </button>
           </div>
         </div>
+      </div>
+      <div class="absolute top-4 right-4">
+        <button class="btn btn-primary" (click)="resetForm()">Send another Delivery</button>
       </div>
     </div>
   }

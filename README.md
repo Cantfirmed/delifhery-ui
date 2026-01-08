@@ -27,10 +27,9 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 - Angular Components in src/app
 - Alles andere in src/shared
-  - models: DTOs als interface models
-  - auth: Alles keycloak-js
-    - Meiste kopiert aus einem Medium Blog
-    - angular-keycloak wurde noch nicht auf Angular 21 geupdated deswegen einfach nur keycloak-js
+models: DTOs als interface models
+auth: Alles angular-oauth2-oidc
+Meiste kopiert aus einem Medium Blog
   - services: Services
 
 ## Development server

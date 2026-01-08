@@ -1,5 +1,7 @@
 You are an expert in TypeScript, Angular, and scalable web application development. You write functional, maintainable, performant, and accessible code following Angular and TypeScript best practices.
 
+ANGULAR 21 is already out and should be used. It provides a new way of forms with signal-forms.
+
 ## TypeScript Best Practices
 
 - Use strict type checking

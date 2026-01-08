@@ -1,5 +1,5 @@
 import { Component, output, signal } from '@angular/core';
-import { Field, form, required } from '@angular/forms/signals';
+import { Field, form, required, validate } from '@angular/forms/signals';
 import { ContactInformationModel } from '../../../shared/models/models';
 
 @Component({
@@ -20,10 +20,20 @@ export class CiForm {
     required(fieldPath.type, {
       message: 'Type is required',
     });
-    // This should only validate email if type is email
-    // email(fieldPath.value, {
-    //   message: 'Please enter a valid email address',
-    // });
+    validate(fieldPath.value, ({ value, valueOf }) => {
+      const test = value();
+      const type = valueOf(fieldPath.type);
+      if (type === 'Email') {
+        if (!test.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+          return { kind: 'invalidEmail', message: 'Invalid email format' };
+        }
+      } else if (type === 'PhoneNumber') {
+        if (!test.match(/^\+?[1-9]\d{1,14}$/)) {
+          return { kind: 'invalidPhone', message: 'Invalid phone number format' };
+        }
+      }
+      return null;
+    });
   });
 
   onSubmit(event: Event) {

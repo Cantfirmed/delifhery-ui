@@ -1,58 +1,60 @@
-import { Injectable, signal } from '@angular/core';
-import Keycloak from 'keycloak-js';
+import { Injectable, inject, signal } from '@angular/core';
+import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+
+const authConfig: AuthConfig = {
+  issuer: 'http://localhost:8080/realms/delifhery',
+  redirectUri: window.location.origin,
+  clientId: 'delifhery',
+  responseType: 'code',
+  scope: 'openid profile email',
+  showDebugInformation: true,
+  silentRefreshRedirectUri: window.location.origin + '/silent-check-sso.html',
+};
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private _keycloak: Keycloak | undefined;
+  private oauthService = inject(OAuthService);
 
   isLoggedIn = signal(false);
-  userProfile = signal<Keycloak.KeycloakProfile | undefined>(undefined);
-
-  get keycloakInstance() {
-    if (!this._keycloak) {
-      this._keycloak = new Keycloak({
-        url: 'http://localhost:8080',
-        realm: 'delifhery',
-        clientId: 'delifhery',
-      });
-    }
-    return this._keycloak;
-  }
+  userProfile = signal<Record<string, unknown> | undefined>(undefined);
 
   async init(): Promise<boolean> {
-    const authenticated = await this.keycloakInstance.init({
-      onLoad: 'check-sso',
-      silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
-      checkLoginIframe: false,
-      enableLogging: true,
-    });
+    this.oauthService.configure(authConfig);
+    this.oauthService.setupAutomaticSilentRefresh();
 
-    this.isLoggedIn.set(authenticated);
-
-    if (authenticated) {
-      try {
-        const profile = await this.keycloakInstance.loadUserProfile();
-        this.userProfile.set(profile);
-      } catch (error) {
-        console.error('Failed to load user profile:', error);
-        // We are still logged in, even if profile fails
-      }
+    const loggedIn = await this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    
+    this.isLoggedIn.set(this.oauthService.hasValidAccessToken());
+    
+    if (this.oauthService.hasValidAccessToken()) {
+      this.userProfile.set(this.oauthService.getIdentityClaims() as Record<string, unknown>);
     }
 
-    return authenticated;
+    // Subscribe to events to update state
+    this.oauthService.events.subscribe((_) => {
+       const hasToken = this.oauthService.hasValidAccessToken();
+       this.isLoggedIn.set(hasToken);
+       if (hasToken) {
+           this.userProfile.set(this.oauthService.getIdentityClaims() as Record<string, unknown>);
+       } else {
+           this.userProfile.set(undefined);
+       }
+    });
+
+    return loggedIn;
   }
 
   login() {
-    return this.keycloakInstance.login();
+    this.oauthService.initLoginFlow();
   }
 
   logout() {
-    return this.keycloakInstance.logout({ redirectUri: window.location.origin });
+    this.oauthService.logOut();
   }
 
   getToken() {
-    return this.keycloakInstance.token;
+    return this.oauthService.getAccessToken();
   }
 }

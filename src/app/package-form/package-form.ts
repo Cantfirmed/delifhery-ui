@@ -1,4 +1,4 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { Field, form, required } from '@angular/forms/signals';
 import { PackageModel } from '../../shared/models/models';
 
@@ -9,6 +9,7 @@ import { PackageModel } from '../../shared/models/models';
   styleUrl: './package-form.css',
 })
 export class PackageForm {
+  initialData = input<PackageModel | null>(null);
   submitPackage = output<PackageModel>();
 
   packageModel = signal<PackageModel>({
@@ -33,6 +34,15 @@ export class PackageForm {
     height: 0.0,
     length: 0.0,
   });
+
+  constructor() {
+    effect(() => {
+      const data = this.initialData();
+      if (data) {
+        this.packageModel.set(data);
+      }
+    });
+  }
 
   packageForm = form(this.packageModel, (fieldPath) => {
     // Add more validations
