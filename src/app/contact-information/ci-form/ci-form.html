@@ -26,7 +26,7 @@
   </div>
   <div class="flex flex-col md:flex-row items-start gap-4">
     <div class="flex-1 w-full">
-      @if (CIForm.value().invalid()) {
+      @if (submitted() && CIForm.value().invalid()) {
         <div class="alert alert-error shadow-sm" role="alert">
           <svg
             xmlns="http://www.w3.org/2000/svg"

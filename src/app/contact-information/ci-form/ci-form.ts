@@ -11,6 +11,8 @@ import { ContactInformationModel } from '../../../shared/models/models';
 export class CiForm {
   submitForm = output<ContactInformationModel>();
 
+  submitted = signal(false);
+
   CIModel = signal<ContactInformationModel>({
     type: 'Email',
     value: '',
@@ -46,6 +48,7 @@ export class CiForm {
 
   onSubmit(event: Event) {
     event.preventDefault();
+    this.submitted.set(true);
     if (this.CIForm().valid()) {
       const credentials = this.CIModel();
       console.log('Submitting:', credentials);
