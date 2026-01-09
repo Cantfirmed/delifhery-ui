@@ -19,8 +19,8 @@ export class TrackForm {
   trackingForm = form(this.trackingModel, (fieldPath) => {
     required(fieldPath.trackingId, { message: 'Tracking number is required' });
     required(fieldPath.zipCode, { message: 'Zip code is required' });
-    max(fieldPath.zipCode, 99999, { message: 'Zip code cannot exceed 5 digits' });
     max(fieldPath.trackingId, 9999999999, { message: 'Tracking number cannot exceed 10 digits' });
+    max(fieldPath.zipCode, 99999, { message: 'Zip code cannot exceed 5 digits' });
   });
 
   onSubmit(event: Event) {

@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { DeliveryCreateModel, DeliveryModel, PackageModel } from '../../shared/models/models';
 import { DeliveryService } from '../../shared/services/delivery.service';
 import { ErrorMessageService } from '../../shared/services/error-message.service';
 import { PackageForm } from '../package-form/package-form';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-deliver',
@@ -20,7 +20,7 @@ export class Deliver {
   packageData = signal<PackageModel | null>(null);
 
   constructor() {
-    const nav = this.router.getCurrentNavigation();
+    const nav = this.router.currentNavigation();
     if (nav?.extras?.state?.['packageData']) {
       this.packageData.set(nav.extras.state['packageData']);
     }

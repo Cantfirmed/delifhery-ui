@@ -20,15 +20,23 @@ export class CiForm {
     required(fieldPath.type, {
       message: 'Type is required',
     });
+    required(fieldPath.value, {
+      message: 'Value is required',
+    });
     validate(fieldPath.value, ({ value, valueOf }) => {
-      const test = value();
+      const val = value();
       const type = valueOf(fieldPath.type);
+      console.log('Validating', type, val);
+      if (val.trim() === '') {
+        return null;
+      }
       if (type === 'Email') {
-        if (!test.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        if (!val.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
           return { kind: 'invalidEmail', message: 'Invalid email format' };
         }
       } else if (type === 'PhoneNumber') {
-        if (!test.match(/^\+?[1-9]\d{1,14}$/)) {
+        const normalized = val.replace(/[\s()-]/g, ''); // drop common formatting chars
+        if (!normalized.match(/^\+?[1-9]\d{6,14}$/)) {
           return { kind: 'invalidPhone', message: 'Invalid phone number format' };
         }
       }

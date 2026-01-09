@@ -17,13 +17,6 @@
         <span class="label">Email Address</span>
         <input class="input w-full" type="text" placeholder="mm@mail.com" [field]="CIForm.value" />
       </label>
-      @if (CIForm.value().invalid()) {
-        <ul>
-          @for (error of CIForm.value().errors(); track error) {
-            <li class="text-sm text-error">- {{ error.message }}</li>
-          }
-        </ul>
-      }
     } @else if (CIForm.type().value() === 'PhoneNumber') {
       <label class="flex-1">
         <span class="label">Phone Number</span>
@@ -31,7 +24,38 @@
       </label>
     }
   </div>
-  <div class="flex justify-center">
-    <button class="btn btn-primary px-8" type="submit">Create</button>
+  <div class="flex flex-col md:flex-row items-start gap-4">
+    <div class="flex-1 w-full">
+      @if (CIForm.value().invalid()) {
+        <div class="alert alert-error shadow-sm" role="alert">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+            />
+          </svg>
+
+          <div class="flex flex-col gap-1">
+            <span class="font-semibold text-sm">Please fix the following:</span>
+            <ul class="list-disc list-inside text-sm leading-relaxed">
+              @for (error of CIForm.value().errors(); track error) {
+                <li>{{ error.message }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="md:ml-auto">
+      <button class="btn btn-primary px-8" type="submit">Create</button>
+    </div>
   </div>
 </form>

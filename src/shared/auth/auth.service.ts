@@ -25,25 +25,25 @@ export class AuthService {
     this.oauthService.setupAutomaticSilentRefresh();
 
     const loggedIn = await this.oauthService.loadDiscoveryDocumentAndTryLogin();
-    
-    this.isLoggedIn.set(this.oauthService.hasValidAccessToken());
-    
-    if (this.oauthService.hasValidAccessToken()) {
-      this.userProfile.set(this.oauthService.getIdentityClaims() as Record<string, unknown>);
-    }
+
+    this.updateState();
 
     // Subscribe to events to update state
-    this.oauthService.events.subscribe((_) => {
-       const hasToken = this.oauthService.hasValidAccessToken();
-       this.isLoggedIn.set(hasToken);
-       if (hasToken) {
-           this.userProfile.set(this.oauthService.getIdentityClaims() as Record<string, unknown>);
-       } else {
-           this.userProfile.set(undefined);
-       }
+    this.oauthService.events.subscribe(() => {
+      this.updateState();
     });
 
     return loggedIn;
+  }
+
+  private updateState() {
+    const hasToken = this.oauthService.hasValidAccessToken();
+    this.isLoggedIn.set(hasToken);
+    if (hasToken) {
+      this.userProfile.set(this.oauthService.getIdentityClaims() as Record<string, unknown>);
+    } else {
+      this.userProfile.set(undefined);
+    }
   }
 
   login() {
@@ -52,9 +52,5 @@ export class AuthService {
 
   logout() {
     this.oauthService.logOut();
-  }
-
-  getToken() {
-    return this.oauthService.getAccessToken();
   }
 }

@@ -7,11 +7,11 @@ import { Deliver } from './deliver/deliver';
 import { Track } from './track/track';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'calculate-price', pathMatch: 'full' },
+  { path: '', redirectTo: 'track', pathMatch: 'full' },
   { path: 'track', component: Track },
   { path: 'calculate-price', component: CalculatePrice },
-  { path: 'deliver', component: Deliver },
-  // Disable tab if not logged in
+  // Disable tab if not logged in?
+  { path: 'deliver', component: Deliver, canActivate: [authGuard] },
   { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
   { path: 'contact-information', component: ContactInformation, canActivate: [authGuard] },
 ];

@@ -27,10 +27,12 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 
 - Angular Components in src/app
 - Alles andere in src/shared
-models: DTOs als interface models
-auth: Alles angular-oauth2-oidc
-Meiste kopiert aus einem Medium Blog
-  - services: Services
+  models: DTOs als interface models
+- auth with angular-oauth2-oidc
+  - `auth.service.ts`: Stellt service für login/logout/userinfo bereit
+  - `auth.guard.ts`: Um Routen zu protecten
+  - `auth.interceptor.ts`: Fügt Bearer-Token zu HTTP-Requests hinzu
+- services: Services
 
 ## Development server
 

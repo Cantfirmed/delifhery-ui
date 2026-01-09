@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import {
   DeliveryCreateModel,
   DeliveryModel,
+  DeliveryStateModel,
   PackageModel,
   PriceModel,
   TrackingModel,
@@ -31,5 +32,11 @@ export class DeliveryService {
 
   registerPackage(packageData: DeliveryCreateModel): Observable<DeliveryModel> {
     return this.http.post<DeliveryModel>(`${this.apiUrl}/delivery`, packageData);
+  }
+
+  getDeliveryHistory(deliveryData: TrackingModel): Observable<DeliveryStateModel[]> {
+    return this.http.get<DeliveryStateModel[]>(
+      `${this.apiUrl}/deliverystate/history/${deliveryData.trackingId}?zipCode=${deliveryData.zipCode}`,
+    );
   }
 }
