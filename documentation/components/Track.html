@@ -168,6 +168,7 @@
                 <td class="col-md-3">imports</td>
                 <td class="col-md-9">
                                 <code><a href="../components/TrackForm.html" target="_self" >TrackForm</a></code>
+                            <code>DatePipe</code>
                 </td>
             </tr>
 
@@ -213,6 +214,13 @@
                                     <span class="modifier">Private</span>
                                 <a href="#deliveryService" >deliveryService</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#errorMessageService" >errorMessageService</a>
+                            </li>
+                            <li>
+                                <a href="#history" >history</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -225,6 +233,10 @@
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#fetchHistory" >fetchHistory</a>
+                            </li>
                             <li>
                                 <a href="#onTrack" >onTrack</a>
                             </li>
@@ -254,6 +266,75 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="fetchHistory"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>fetchHistory</b></span>
+                        <a href="#fetchHistory"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>fetchHistory(packageData: <a href="../interfaces/TrackingModel.html" target="_self">TrackingModel</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="40"
+                                    class="link-to-prism">src/app/track/track.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>packageData</td>
+                                            <td>
+                                                            <code><a href="../interfaces/TrackingModel.html" target="_self" >TrackingModel</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="onTrack"></a>
                     <span class="name">
                         <span ><b>onTrack</b></span>
@@ -270,8 +351,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="16"
-                                    class="link-to-prism">src/app/track/track.ts:16</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="21"
+                                    class="link-to-prism">src/app/track/track.ts:21</a></div>
                         </td>
                     </tr>
 
@@ -347,7 +428,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/track/track.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/track/track.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -379,7 +460,70 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/track/track.ts:13</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/track/track.ts:15</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessageService"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>errorMessageService</b></span>
+                        <a href="#errorMessageService"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(ErrorMessageService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/track/track.ts:16</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="history"></a>
+                    <span class="name">
+                        <span ><b>history</b></span>
+                        <a href="#history"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>unknown</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;DeliveryStateModel[]&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/track/track.ts:19</a></div>
                         </td>
                     </tr>
 
@@ -392,25 +536,49 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, signal } from &#x27;@angular/core&#x27;;
-import { DeliveryModel, TrackingModel } from &#x27;../../shared/models/models&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { DatePipe } from &#x27;@angular/common&#x27;;
+import { Component, inject, signal } from &#x27;@angular/core&#x27;;
+import { DeliveryModel, DeliveryStateModel, TrackingModel } from &#x27;../../shared/models/models&#x27;;
 import { DeliveryService } from &#x27;../../shared/services/delivery.service&#x27;;
+import { ErrorMessageService } from &#x27;../../shared/services/error-message.service&#x27;;
 import { TrackForm } from &#x27;./track-form/track-form&#x27;;
 
 @Component({
   selector: &#x27;app-track&#x27;,
-  imports: [TrackForm],
+  imports: [TrackForm, DatePipe],
   templateUrl: &#x27;./track.html&#x27;,
   styleUrl: &#x27;./track.css&#x27;,
 })
 export class Track {
   private deliveryService &#x3D; inject(DeliveryService);
+  private errorMessageService &#x3D; inject(ErrorMessageService);
+
   delivery &#x3D; signal&lt;DeliveryModel | null&gt;(null);
+  history &#x3D; signal&lt;DeliveryStateModel[]&gt;([]);
 
   onTrack(packageData: TrackingModel) {
     this.deliveryService.getDelivery(packageData).subscribe({
-      next: (price) &#x3D;&gt; this.delivery.set(price),
-      error: (err) &#x3D;&gt; console.error(&#x27;Error tracking delivery:&#x27;, err),
+      next: (delivery) &#x3D;&gt; {
+        this.delivery.set(delivery);
+        this.fetchHistory(packageData);
+      },
+      error: (err) &#x3D;&gt; {
+        if (err.status &#x3D;&#x3D;&#x3D; 404) {
+          this.errorMessageService.showMessage(
+            &#x27;Delivery not found. Please check your tracking number and zip code.&#x27;,
+          );
+        }
+        if (err.status &#x3D;&#x3D;&#x3D; 500) {
+          this.errorMessageService.showServerError();
+        }
+      },
+    });
+  }
+
+  private fetchHistory(packageData: TrackingModel) {
+    this.deliveryService.getDeliveryHistory(packageData).subscribe({
+      next: (history) &#x3D;&gt; this.history.set(history),
+      error: () &#x3D;&gt; this.history.set([]),
     });
   }
 }
@@ -419,7 +587,15 @@ export class Track {
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mx-auto p-4 max-w-4xl&quot;&gt;
-  &lt;h1 class&#x3D;&quot;text-3xl font-bold mb-8 text-center&quot;&gt;Track Your Package&lt;/h1&gt;
+  &lt;h1 class&#x3D;&quot;text-3xl font-bold mb-4 text-center&quot;&gt;Track Your Package&lt;/h1&gt;
+  &lt;div class&#x3D;&quot;card&quot;&gt;
+    &lt;div class&#x3D;&quot;card-body&quot;&gt;
+      &lt;p class&#x3D;&quot;text text-center&quot;&gt;
+        Enter your &lt;strong&gt;tracking number&lt;/strong&gt; and &lt;strong&gt;ZIP code&lt;/strong&gt; of the recepient
+        below to track the status of your package.
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 
   &lt;div class&#x3D;&quot;card bg-base-100 shadow-sm border border-base-300 mb-8&quot;&gt;
     &lt;div class&#x3D;&quot;card-body&quot;&gt;
@@ -434,7 +610,12 @@ export class Track {
           &lt;div class&#x3D;&quot;flex-1 space-y-4&quot;&gt;
             &lt;div&gt;
               &lt;h2 class&#x3D;&quot;text-2xl font-bold&quot;&gt;
-                Status: &lt;span class&#x3D;&quot;text-primary&quot;&gt;{{ d.currentState.state }}&lt;/span&gt;
+                &lt;span class&#x3D;&quot;inline-flex items-center gap-2&quot;&gt;
+                  &lt;span class&#x3D;&quot;text-base-content/70&quot;&gt;Status:&lt;/span&gt;
+                  &lt;span class&#x3D;&quot;inline-flex items-center gap-2 text-primary&quot;&gt;
+                    &lt;span&gt;{{ d.currentState.state }}&lt;/span&gt;
+                  &lt;/span&gt;
+                &lt;/span&gt;
               &lt;/h2&gt;
               &lt;p class&#x3D;&quot;text-base-content/60&quot;&gt;Tracking ID: #{{ d.trackingId }}&lt;/p&gt;
             &lt;/div&gt;
@@ -448,14 +629,14 @@ export class Track {
                 &gt;
                   Sender
                 &lt;/h3&gt;
-                &lt;p class&#x3D;&quot;font-bold&quot;&gt;{{ d.package.package.sender.name }}&lt;/p&gt;
-                &lt;p class&#x3D;&quot;text-sm&quot;&gt;{{ d.package.package.sender.street }}&lt;/p&gt;
+                &lt;p class&#x3D;&quot;font-bold&quot;&gt;{{ d.package.sender.name }}&lt;/p&gt;
+                &lt;p class&#x3D;&quot;text-sm&quot;&gt;{{ d.package.sender.street }}&lt;/p&gt;
                 &lt;p class&#x3D;&quot;text-sm&quot;&gt;
-                  {{ d.package.package.sender.zipCode }} {{ d.package.package.sender.city }},
-                  {{ d.package.package.sender.state }}
+                  {{ d.package.sender.zipCode }} {{ d.package.sender.city }},
+                  {{ d.package.sender.state }}
                 &lt;/p&gt;
                 &lt;p class&#x3D;&quot;text-sm&quot;&gt;
-                  {{ d.package.package.sender.country }}
+                  {{ d.package.sender.country }}
                 &lt;/p&gt;
               &lt;/div&gt;
               &lt;div&gt;
@@ -464,14 +645,14 @@ export class Track {
                 &gt;
                   Recipient
                 &lt;/h3&gt;
-                &lt;p class&#x3D;&quot;font-bold&quot;&gt;{{ d.package.package.recipient.name }}&lt;/p&gt;
-                &lt;p class&#x3D;&quot;text-sm&quot;&gt;{{ d.package.package.recipient.street }}&lt;/p&gt;
+                &lt;p class&#x3D;&quot;font-bold&quot;&gt;{{ d.package.recipient.name }}&lt;/p&gt;
+                &lt;p class&#x3D;&quot;text-sm&quot;&gt;{{ d.package.recipient.street }}&lt;/p&gt;
                 &lt;p class&#x3D;&quot;text-sm&quot;&gt;
-                  {{ d.package.package.recipient.zipCode }} {{ d.package.package.recipient.city }},
-                  {{ d.package.package.recipient.state }}
+                  {{ d.package.recipient.zipCode }} {{ d.package.recipient.city }},
+                  {{ d.package.recipient.state }}
                 &lt;/p&gt;
                 &lt;p class&#x3D;&quot;text-sm&quot;&gt;
-                  {{ d.package.package.recipient.country }}
+                  {{ d.package.recipient.country }}
                 &lt;/p&gt;
               &lt;/div&gt;
             &lt;/div&gt;
@@ -526,6 +707,95 @@ export class Track {
         &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
+
+    &lt;div class&#x3D;&quot;card bg-base-100 shadow-sm border border-base-300 mt-8&quot;&gt;
+      &lt;div class&#x3D;&quot;card-body&quot;&gt;
+        &lt;div class&#x3D;&quot;flex items-center justify-between gap-4&quot;&gt;
+          &lt;h3 class&#x3D;&quot;text-xl font-bold&quot;&gt;State History&lt;/h3&gt;
+          &lt;span class&#x3D;&quot;text-xs text-base-content/60&quot;&gt;Latest updates shown below.&lt;/span&gt;
+        &lt;/div&gt;
+
+        @if (history().length) {
+          &lt;ol class&#x3D;&quot;mt-6 space-y-6 border-l border-base-200&quot;&gt;
+            @for (state of history(); track $index) {
+              &lt;li class&#x3D;&quot;relative ml-4&quot;&gt;
+                &lt;div class&#x3D;&quot;flex flex-col gap-1&quot;&gt;
+                  &lt;div class&#x3D;&quot;flex items-center justify-between gap-4&quot;&gt;
+                    &lt;span class&#x3D;&quot;text-sm font-semibold inline-flex items-center gap-2&quot;&gt;
+                      @switch (state.state) {
+                        @case (&#x27;Registered&#x27;) {
+                          &lt;svg
+                            xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                            fill&#x3D;&quot;none&quot;
+                            viewBox&#x3D;&quot;0 0 24 24&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            class&#x3D;&quot;size-6&quot;
+                          &gt;
+                            &lt;path
+                              stroke-linecap&#x3D;&quot;round&quot;
+                              stroke-linejoin&#x3D;&quot;round&quot;
+                              d&#x3D;&quot;M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z&quot;
+                            /&gt;
+                          &lt;/svg&gt;
+                        }
+                        @case (&#x27;In Transit&#x27;) {
+                          &lt;svg
+                            xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                            fill&#x3D;&quot;none&quot;
+                            viewBox&#x3D;&quot;0 0 24 24&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            class&#x3D;&quot;size-6&quot;
+                          &gt;
+                            &lt;path
+                              stroke-linecap&#x3D;&quot;round&quot;
+                              stroke-linejoin&#x3D;&quot;round&quot;
+                              d&#x3D;&quot;M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12&quot;
+                            /&gt;
+                          &lt;/svg&gt;
+                        }
+                        @case (&#x27;Delivered&#x27;) {
+                          &lt;svg
+                            xmlns&#x3D;&quot;http://www.w3.org/2000/svg&quot;
+                            fill&#x3D;&quot;none&quot;
+                            viewBox&#x3D;&quot;0 0 24 24&quot;
+                            stroke-width&#x3D;&quot;1.5&quot;
+                            stroke&#x3D;&quot;currentColor&quot;
+                            class&#x3D;&quot;size-6&quot;
+                          &gt;
+                            &lt;path
+                              stroke-linecap&#x3D;&quot;round&quot;
+                              stroke-linejoin&#x3D;&quot;round&quot;
+                              d&#x3D;&quot;m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25&quot;
+                            /&gt;
+                          &lt;/svg&gt;
+                        }
+                      }
+                      &lt;span&gt;{{ state.state }}&lt;/span&gt;
+                    &lt;/span&gt;
+                    &lt;span class&#x3D;&quot;text-xs text-base-content/60&quot;&gt;
+                      @if (state.createdDate) {
+                        {{ state.createdDate | date: &#x27;medium&#x27; }}
+                      } @else {
+                        Date unavailable
+                      }
+                    &lt;/span&gt;
+                  &lt;/div&gt;
+                  @if (state.value) {
+                    &lt;p class&#x3D;&quot;text-sm text-base-content/70&quot;&gt;{{ state.value }}&lt;/p&gt;
+                  }
+                &lt;/div&gt;
+              &lt;/li&gt;
+            }
+          &lt;/ol&gt;
+        } @else {
+          &lt;div class&#x3D;&quot;alert alert-info mt-4&quot;&gt;
+            &lt;span&gt;No state updates are available yet.&lt;/span&gt;
+          &lt;/div&gt;
+        }
+      &lt;/div&gt;
+    &lt;/div&gt;
   }
 &lt;/div&gt;
 </code></pre>
@@ -557,7 +827,7 @@ export class Track {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container mx-auto p-4 max-w-4xl">  <h1 class="text-3xl font-bold mb-8 text-center">Track Your Package</h1>  <div class="card bg-base-100 shadow-sm border border-base-300 mb-8">    <div class="card-body">      <app-track-form (submitTracking)="onTrack($event)"></app-track-form>    </div>  </div>  @if (delivery(); as d) {    <div class="card bg-base-100 shadow-sm border border-base-300">      <div class="card-body">        <div class="flex flex-col md:flex-row justify-between items-start gap-8">          <div class="flex-1 space-y-4">            <div>              <h2 class="text-2xl font-bold">                Status: <span class="text-primary">{{ d.currentState.state }}</span>              </h2>              <p class="text-base-content/60">Tracking ID: #{{ d.trackingId }}</p>            </div>            <div class="divider"></div>            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">              <div>                <h3                  class="font-semibold text-sm uppercase tracking-wider text-base-content/50 mb-2"                >                  Sender                </h3>                <p class="font-bold">{{ d.package.package.sender.name }}</p>                <p class="text-sm">{{ d.package.package.sender.street }}</p>                <p class="text-sm">                  {{ d.package.package.sender.zipCode }} {{ d.package.package.sender.city }},                  {{ d.package.package.sender.state }}                </p>                <p class="text-sm">                  {{ d.package.package.sender.country }}                </p>              </div>              <div>                <h3                  class="font-semibold text-sm uppercase tracking-wider text-base-content/50 mb-2"                >                  Recipient                </h3>                <p class="font-bold">{{ d.package.package.recipient.name }}</p>                <p class="text-sm">{{ d.package.package.recipient.street }}</p>                <p class="text-sm">                  {{ d.package.package.recipient.zipCode }} {{ d.package.package.recipient.city }},                  {{ d.package.package.recipient.state }}                </p>                <p class="text-sm">                  {{ d.package.package.recipient.country }}                </p>              </div>            </div>            @if (d.paymentUrl) {              <div class="pt-4">                <a                  [href]="d.paymentUrl"                  target="_blank"                  class="btn btn-outline btn-secondary btn-sm"                  >Pay Now</a                >              </div>            }          </div>          @if (d.label) {            <div class="flex-none flex flex-col items-center md:items-end gap-4">              <div class="flex flex-col items-center md:items-end gap-2">                <span class="text-sm font-semibold text-base-content/50">Shipping Label</span>                <div                  id="printable-area"                  class="bg-white p-2 rounded-lg border border-base-300 shadow-sm"                >                  <img                    [src]="\'data:image/png;base64,\' + d.label"                    alt="Shipping Label"                    class="max-w-62.5 h-auto object-contain"                  />                </div>              </div>              <button class="btn btn-ghost btn-sm gap-2" onclick="window.print()">                <svg                  xmlns="http://www.w3.org/2000/svg"                  fill="none"                  viewBox="0 0 24 24"                  stroke-width="1.5"                  stroke="currentColor"                  class="size-6"                >                  <path                    stroke-linecap="round"                    stroke-linejoin="round"                    d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z"                  />                </svg>                Print Label              </button>            </div>          }        </div>      </div>    </div>  }</div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container mx-auto p-4 max-w-4xl">  <h1 class="text-3xl font-bold mb-4 text-center">Track Your Package</h1>  <div class="card">    <div class="card-body">      <p class="text text-center">        Enter your <strong>tracking number</strong> and <strong>ZIP code</strong> of the recepient        below to track the status of your package.      </p>    </div>  </div>  <div class="card bg-base-100 shadow-sm border border-base-300 mb-8">    <div class="card-body">      <app-track-form (submitTracking)="onTrack($event)"></app-track-form>    </div>  </div>  @if (delivery(); as d) {    <div class="card bg-base-100 shadow-sm border border-base-300">      <div class="card-body">        <div class="flex flex-col md:flex-row justify-between items-start gap-8">          <div class="flex-1 space-y-4">            <div>              <h2 class="text-2xl font-bold">                <span class="inline-flex items-center gap-2">                  <span class="text-base-content/70">Status:</span>                  <span class="inline-flex items-center gap-2 text-primary">                    <span>{{ d.currentState.state }}</span>                  </span>                </span>              </h2>              <p class="text-base-content/60">Tracking ID: #{{ d.trackingId }}</p>            </div>            <div class="divider"></div>            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">              <div>                <h3                  class="font-semibold text-sm uppercase tracking-wider text-base-content/50 mb-2"                >                  Sender                </h3>                <p class="font-bold">{{ d.package.sender.name }}</p>                <p class="text-sm">{{ d.package.sender.street }}</p>                <p class="text-sm">                  {{ d.package.sender.zipCode }} {{ d.package.sender.city }},                  {{ d.package.sender.state }}                </p>                <p class="text-sm">                  {{ d.package.sender.country }}                </p>              </div>              <div>                <h3                  class="font-semibold text-sm uppercase tracking-wider text-base-content/50 mb-2"                >                  Recipient                </h3>                <p class="font-bold">{{ d.package.recipient.name }}</p>                <p class="text-sm">{{ d.package.recipient.street }}</p>                <p class="text-sm">                  {{ d.package.recipient.zipCode }} {{ d.package.recipient.city }},                  {{ d.package.recipient.state }}                </p>                <p class="text-sm">                  {{ d.package.recipient.country }}                </p>              </div>            </div>            @if (d.paymentUrl) {              <div class="pt-4">                <a                  [href]="d.paymentUrl"                  target="_blank"                  class="btn btn-outline btn-secondary btn-sm"                  >Pay Now</a                >              </div>            }          </div>          @if (d.label) {            <div class="flex-none flex flex-col items-center md:items-end gap-4">              <div class="flex flex-col items-center md:items-end gap-2">                <span class="text-sm font-semibold text-base-content/50">Shipping Label</span>                <div                  id="printable-area"                  class="bg-white p-2 rounded-lg border border-base-300 shadow-sm"                >                  <img                    [src]="\'data:image/png;base64,\' + d.label"                    alt="Shipping Label"                    class="max-w-62.5 h-auto object-contain"                  />                </div>              </div>              <button class="btn btn-ghost btn-sm gap-2" onclick="window.print()">                <svg                  xmlns="http://www.w3.org/2000/svg"                  fill="none"                  viewBox="0 0 24 24"                  stroke-width="1.5"                  stroke="currentColor"                  class="size-6"                >                  <path                    stroke-linecap="round"                    stroke-linejoin="round"                    d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0 1 10.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0 .229 2.523a1.125 1.125 0 0 1-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0 0 21 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 0 0-1.913-.247M6.34 18H5.25A2.25 2.25 0 0 1 3 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 0 1 1.913-.247m10.5 0a48.536 48.536 0 0 0-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5Zm-3 0h.008v.008H15V10.5Z"                  />                </svg>                Print Label              </button>            </div>          }        </div>      </div>    </div>    <div class="card bg-base-100 shadow-sm border border-base-300 mt-8">      <div class="card-body">        <div class="flex items-center justify-between gap-4">          <h3 class="text-xl font-bold">State History</h3>          <span class="text-xs text-base-content/60">Latest updates shown below.</span>        </div>        @if (history().length) {          <ol class="mt-6 space-y-6 border-l border-base-200">            @for (state of history(); track $index) {              <li class="relative ml-4">                <div class="flex flex-col gap-1">                  <div class="flex items-center justify-between gap-4">                    <span class="text-sm font-semibold inline-flex items-center gap-2">                      @switch (state.state) {                        @case (\'Registered\') {                          <svg                            xmlns="http://www.w3.org/2000/svg"                            fill="none"                            viewBox="0 0 24 24"                            stroke-width="1.5"                            stroke="currentColor"                            class="size-6"                          >                            <path                              stroke-linecap="round"                              stroke-linejoin="round"                              d="M13.5 21v-7.5a.75.75 0 0 1 .75-.75h3a.75.75 0 0 1 .75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349M3.75 21V9.349m0 0a3.001 3.001 0 0 0 3.75-.615A2.993 2.993 0 0 0 9.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 0 0 2.25 1.016c.896 0 1.7-.393 2.25-1.015a3.001 3.001 0 0 0 3.75.614m-16.5 0a3.004 3.004 0 0 1-.621-4.72l1.189-1.19A1.5 1.5 0 0 1 5.378 3h13.243a1.5 1.5 0 0 1 1.06.44l1.19 1.189a3 3 0 0 1-.621 4.72M6.75 18h3.75a.75.75 0 0 0 .75-.75V13.5a.75.75 0 0 0-.75-.75H6.75a.75.75 0 0 0-.75.75v3.75c0 .414.336.75.75.75Z"                            />                          </svg>                        }                        @case (\'In Transit\') {                          <svg                            xmlns="http://www.w3.org/2000/svg"                            fill="none"                            viewBox="0 0 24 24"                            stroke-width="1.5"                            stroke="currentColor"                            class="size-6"                          >                            <path                              stroke-linecap="round"                              stroke-linejoin="round"                              d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12"                            />                          </svg>                        }                        @case (\'Delivered\') {                          <svg                            xmlns="http://www.w3.org/2000/svg"                            fill="none"                            viewBox="0 0 24 24"                            stroke-width="1.5"                            stroke="currentColor"                            class="size-6"                          >                            <path                              stroke-linecap="round"                              stroke-linejoin="round"                              d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"                            />                          </svg>                        }                      }                      <span>{{ state.state }}</span>                    </span>                    <span class="text-xs text-base-content/60">                      @if (state.createdDate) {                        {{ state.createdDate | date: \'medium\' }}                      } @else {                        Date unavailable                      }                    </span>                  </div>                  @if (state.value) {                    <p class="text-sm text-base-content/70">{{ state.value }}</p>                  }                </div>              </li>            }          </ol>        } @else {          <div class="alert alert-info mt-4">            <span>No state updates are available yet.</span>          </div>        }      </div>    </div>  }</div></div>'
     var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'CalculatePrice', 'selector': 'app-calculate-price'},{'name': 'CiForm', 'selector': 'app-ci-form'},{'name': 'ContactInformation', 'selector': 'app-contact-information'},{'name': 'Dashboard', 'selector': 'app-dashboard'},{'name': 'Deliver', 'selector': 'app-deliver'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'PackageForm', 'selector': 'app-package-form'},{'name': 'Track', 'selector': 'app-track'},{'name': 'TrackForm', 'selector': 'app-track-form'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'Track'};

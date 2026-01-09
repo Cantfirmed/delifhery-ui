@@ -231,6 +231,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#initialData" >initialData</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -253,8 +267,54 @@
     </table>
 </section>
 
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/package-form/package-form.ts:36</a></div>
+                            </td>
+                        </tr>
 
+            </tbody>
+        </table>
+</section>
 
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="initialData"></a>
+                        <b>initialData</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/PackageModel.html" target="_self" >PackageModel | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/package-form/package-form.ts:12</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
@@ -273,7 +333,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/package-form/package-form.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/package-form/package-form.ts:13</a></div>
                             </td>
                         </tr>
             </tbody>
@@ -306,8 +366,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="47"
-                                    class="link-to-prism">src/app/package-form/package-form.ts:47</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="69"
+                                    class="link-to-prism">src/app/package-form/package-form.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -379,19 +439,31 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>form(this.packageModel, (fieldPath) &#x3D;&gt; {
-    // Add more validations
-    required(fieldPath.sender.city, {
-      message: &#x27;City is required&#x27;,
-    });
-    required(fieldPath.sender.zipCode, {
-      message: &#x27;ZIP code is required&#x27;,
-    });
+    // Sender validations
+    required(fieldPath.sender.name, { message: &#x27;Name is required&#x27; });
+    required(fieldPath.sender.street, { message: &#x27;Street is required&#x27; });
+    required(fieldPath.sender.city, { message: &#x27;City is required&#x27; });
+    required(fieldPath.sender.zipCode, { message: &#x27;ZIP code is required&#x27; });
+    required(fieldPath.sender.country, { message: &#x27;Country is required&#x27; });
+
+    // Recipient validations
+    required(fieldPath.recipient.name, { message: &#x27;Name is required&#x27; });
+    required(fieldPath.recipient.street, { message: &#x27;Street is required&#x27; });
+    required(fieldPath.recipient.city, { message: &#x27;City is required&#x27; });
+    required(fieldPath.recipient.zipCode, { message: &#x27;ZIP code is required&#x27; });
+    required(fieldPath.recipient.country, { message: &#x27;Country is required&#x27; });
+
+    // Package details validations
+    min(fieldPath.weight, 0.01, { message: &#x27;Weight must be greater than 0&#x27; });
+    min(fieldPath.width, 0.01, { message: &#x27;Width must be greater than 0&#x27; });
+    min(fieldPath.height, 0.01, { message: &#x27;Height must be greater than 0&#x27; });
+    min(fieldPath.length, 0.01, { message: &#x27;Length must be greater than 0&#x27; });
   })</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/package-form/package-form.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/package-form/package-form.ts:47</a></div>
                         </td>
                     </tr>
 
@@ -443,7 +515,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/package-form/package-form.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/package-form/package-form.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -456,8 +528,8 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, output, signal } from &#x27;@angular/core&#x27;;
-import { Field, form, required } from &#x27;@angular/forms/signals&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, effect, input, output, signal } from &#x27;@angular/core&#x27;;
+import { Field, form, required, min } from &#x27;@angular/forms/signals&#x27;;
 import { PackageModel } from &#x27;../../shared/models/models&#x27;;
 
 @Component({
@@ -467,6 +539,7 @@ import { PackageModel } from &#x27;../../shared/models/models&#x27;;
   styleUrl: &#x27;./package-form.css&#x27;,
 })
 export class PackageForm {
+  initialData &#x3D; input&lt;PackageModel | null&gt;(null);
   submitPackage &#x3D; output&lt;PackageModel&gt;();
 
   packageModel &#x3D; signal&lt;PackageModel&gt;({
@@ -492,14 +565,35 @@ export class PackageForm {
     length: 0.0,
   });
 
+  constructor() {
+    effect(() &#x3D;&gt; {
+      const data &#x3D; this.initialData();
+      if (data) {
+        this.packageModel.set(data);
+      }
+    });
+  }
+
   packageForm &#x3D; form(this.packageModel, (fieldPath) &#x3D;&gt; {
-    // Add more validations
-    required(fieldPath.sender.city, {
-      message: &#x27;City is required&#x27;,
-    });
-    required(fieldPath.sender.zipCode, {
-      message: &#x27;ZIP code is required&#x27;,
-    });
+    // Sender validations
+    required(fieldPath.sender.name, { message: &#x27;Name is required&#x27; });
+    required(fieldPath.sender.street, { message: &#x27;Street is required&#x27; });
+    required(fieldPath.sender.city, { message: &#x27;City is required&#x27; });
+    required(fieldPath.sender.zipCode, { message: &#x27;ZIP code is required&#x27; });
+    required(fieldPath.sender.country, { message: &#x27;Country is required&#x27; });
+
+    // Recipient validations
+    required(fieldPath.recipient.name, { message: &#x27;Name is required&#x27; });
+    required(fieldPath.recipient.street, { message: &#x27;Street is required&#x27; });
+    required(fieldPath.recipient.city, { message: &#x27;City is required&#x27; });
+    required(fieldPath.recipient.zipCode, { message: &#x27;ZIP code is required&#x27; });
+    required(fieldPath.recipient.country, { message: &#x27;Country is required&#x27; });
+
+    // Package details validations
+    min(fieldPath.weight, 0.01, { message: &#x27;Weight must be greater than 0&#x27; });
+    min(fieldPath.width, 0.01, { message: &#x27;Width must be greater than 0&#x27; });
+    min(fieldPath.height, 0.01, { message: &#x27;Height must be greater than 0&#x27; });
+    min(fieldPath.length, 0.01, { message: &#x27;Length must be greater than 0&#x27; });
   });
 
   onSubmit(event: Event) {
@@ -739,8 +833,8 @@ export class PackageForm {
     &lt;/div&gt;
   &lt;/div&gt;
 
-  &lt;div class&#x3D;&quot;flex justify-end w-full max-w-4xl&quot;&gt;
-    &lt;button class&#x3D;&quot;btn btn-primary px-10&quot; type&#x3D;&quot;submit&quot;&gt;Absenden&lt;/button&gt;
+  &lt;div class&#x3D;&quot;flex justify-end w-full mt-4&quot;&gt;
+    &lt;button class&#x3D;&quot;btn btn-primary px-10&quot; type&#x3D;&quot;submit&quot;&gt;Submit&lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;
 </code></pre>
@@ -772,7 +866,7 @@ export class PackageForm {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form class="container mx-auto p-4 flex flex-col gap-8 items-center" (submit)="onSubmit($event)">  <div class="flex flex-col lg:flex-row gap-8 w-full">    <!-- Sender Section -->    <div class="card flex-1 shadow-sm border">      <div class="card-body">        <h2 class="card-title mb-4">Sender</h2>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Name</span>          </div>          <input            type="text"            placeholder="Sender Name"            class="input input-bordered w-full"            [field]="packageForm.sender.name"          />        </label>        <div class="flex flex-col sm:flex-row gap-4">          <label class="form-control flex-1">            <div class="label">              <span class="label-text">Country</span>            </div>            <input              type="text"              placeholder="AT"              class="input input-bordered w-full"              [field]="packageForm.sender.country"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">State</span>            </div>            <input              type="text"              placeholder="State"              class="input input-bordered w-full"              [field]="packageForm.sender.state"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">ZIP Code</span>            </div>            <input              type="number"              placeholder="1234"              class="input input-bordered w-full"              [field]="packageForm.sender.zipCode"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">City</span>            </div>            <input              type="text"              placeholder="City"              class="input input-bordered w-full"              [field]="packageForm.sender.city"            />          </label>        </div>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Street</span>          </div>          <input            type="text"            placeholder="Street"            class="input input-bordered w-full"            [field]="packageForm.sender.street"          />        </label>      </div>    </div>    <!-- Recipient Section -->    <div class="card flex-1 shadow-sm border">      <div class="card-body">        <h2 class="card-title mb-4">Recipient</h2>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Name</span>          </div>          <input            type="text"            placeholder="Recipient Name"            class="input input-bordered w-full"            [field]="packageForm.recipient.name"          />        </label>        <div class="flex flex-col sm:flex-row gap-4">          <label class="form-control flex-1">            <div class="label">              <span class="label-text">Country</span>            </div>            <input              type="text"              placeholder="AT"              class="input input-bordered w-full"              [field]="packageForm.recipient.country"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">State</span>            </div>            <input              type="text"              placeholder="State"              class="input input-bordered w-full"              [field]="packageForm.recipient.state"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">ZIP Code</span>            </div>            <input              type="number"              placeholder="1234"              class="input input-bordered w-full"              [field]="packageForm.recipient.zipCode"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">City</span>            </div>            <input              type="text"              placeholder="City"              class="input input-bordered w-full"              [field]="packageForm.recipient.city"            />          </label>        </div>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Street</span>          </div>          <input            type="text"            placeholder="Street"            class="input input-bordered w-full"            [field]="packageForm.recipient.street"          />        </label>      </div>    </div>  </div>  <!-- Package Section -->  <div class="card w-full shadow-sm border">    <div class="card-body">      <h2 class="card-title mb-4">Package Details</h2>      <div class="flex flex-col sm:flex-row flex-wrap gap-4">        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Weight (kg)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.weight"          />        </label>        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Width (cm)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.width"          />        </label>        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Height (cm)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.height"          />        </label>        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Length (cm)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.length"          />        </label>      </div>    </div>  </div>  <div class="flex justify-end w-full max-w-4xl">    <button class="btn btn-primary px-10" type="submit">Absenden</button>  </div></form></div>'
+        var COMPONENT_TEMPLATE = '<div><form class="container mx-auto p-4 flex flex-col gap-8 items-center" (submit)="onSubmit($event)">  <div class="flex flex-col lg:flex-row gap-8 w-full">    <!-- Sender Section -->    <div class="card flex-1 shadow-sm border">      <div class="card-body">        <h2 class="card-title mb-4">Sender</h2>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Name</span>          </div>          <input            type="text"            placeholder="Sender Name"            class="input input-bordered w-full"            [field]="packageForm.sender.name"          />        </label>        <div class="flex flex-col sm:flex-row gap-4">          <label class="form-control flex-1">            <div class="label">              <span class="label-text">Country</span>            </div>            <input              type="text"              placeholder="AT"              class="input input-bordered w-full"              [field]="packageForm.sender.country"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">State</span>            </div>            <input              type="text"              placeholder="State"              class="input input-bordered w-full"              [field]="packageForm.sender.state"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">ZIP Code</span>            </div>            <input              type="number"              placeholder="1234"              class="input input-bordered w-full"              [field]="packageForm.sender.zipCode"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">City</span>            </div>            <input              type="text"              placeholder="City"              class="input input-bordered w-full"              [field]="packageForm.sender.city"            />          </label>        </div>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Street</span>          </div>          <input            type="text"            placeholder="Street"            class="input input-bordered w-full"            [field]="packageForm.sender.street"          />        </label>      </div>    </div>    <!-- Recipient Section -->    <div class="card flex-1 shadow-sm border">      <div class="card-body">        <h2 class="card-title mb-4">Recipient</h2>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Name</span>          </div>          <input            type="text"            placeholder="Recipient Name"            class="input input-bordered w-full"            [field]="packageForm.recipient.name"          />        </label>        <div class="flex flex-col sm:flex-row gap-4">          <label class="form-control flex-1">            <div class="label">              <span class="label-text">Country</span>            </div>            <input              type="text"              placeholder="AT"              class="input input-bordered w-full"              [field]="packageForm.recipient.country"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">State</span>            </div>            <input              type="text"              placeholder="State"              class="input input-bordered w-full"              [field]="packageForm.recipient.state"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">ZIP Code</span>            </div>            <input              type="number"              placeholder="1234"              class="input input-bordered w-full"              [field]="packageForm.recipient.zipCode"            />          </label>          <label class="form-control flex-1">            <div class="label">              <span class="label-text">City</span>            </div>            <input              type="text"              placeholder="City"              class="input input-bordered w-full"              [field]="packageForm.recipient.city"            />          </label>        </div>        <label class="form-control w-full">          <div class="label">            <span class="label-text">Street</span>          </div>          <input            type="text"            placeholder="Street"            class="input input-bordered w-full"            [field]="packageForm.recipient.street"          />        </label>      </div>    </div>  </div>  <!-- Package Section -->  <div class="card w-full shadow-sm border">    <div class="card-body">      <h2 class="card-title mb-4">Package Details</h2>      <div class="flex flex-col sm:flex-row flex-wrap gap-4">        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Weight (kg)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.weight"          />        </label>        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Width (cm)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.width"          />        </label>        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Height (cm)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.height"          />        </label>        <label class="form-control flex-1 min-w-40">          <div class="label">            <span class="label-text">Length (cm)</span>          </div>          <input            type="number"            step="0.01"            placeholder="0.0"            class="input input-bordered w-full"            [field]="packageForm.length"          />        </label>      </div>    </div>  </div>  <div class="flex justify-end w-full mt-4">    <button class="btn btn-primary px-10" type="submit">Submit</button>  </div></form></div>'
     var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'CalculatePrice', 'selector': 'app-calculate-price'},{'name': 'CiForm', 'selector': 'app-ci-form'},{'name': 'ContactInformation', 'selector': 'app-contact-information'},{'name': 'Dashboard', 'selector': 'app-dashboard'},{'name': 'Deliver', 'selector': 'app-deliver'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'PackageForm', 'selector': 'app-package-form'},{'name': 'Track', 'selector': 'app-track'},{'name': 'TrackForm', 'selector': 'app-track-form'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'PackageForm'};

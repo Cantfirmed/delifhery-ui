@@ -123,16 +123,15 @@ etc. (siehe z.B. Angular Dokumentation), die nicht in der Übung verwendet wurde
 <h2>Aufbau</h2>
 <ul>
 <li>Angular Components in src/app</li>
-<li>Alles andere in src/shared<ul>
-<li>models: DTOs als interface models</li>
-<li>auth: Alles keycloak-js<ul>
-<li>Meiste kopiert aus einem Medium Blog</li>
-<li>angular-keycloak wurde noch nicht auf Angular 21 geupdated deswegen einfach nur keycloak-js</li>
+<li>Alles andere in src/shared
+models: DTOs als interface models</li>
+<li>auth with angular-oauth2-oidc<ul>
+<li><code>auth.service.ts</code>: Stellt service für login/logout/userinfo bereit</li>
+<li><code>auth.guard.ts</code>: Um Routen zu protecten</li>
+<li><code>auth.interceptor.ts</code>: Fügt Bearer-Token zu HTTP-Requests hinzu</li>
 </ul>
 </li>
 <li>services: Services</li>
-</ul>
-</li>
 </ul>
 <h2>Development server</h2>
 <p>To start a local development server, run:</p>

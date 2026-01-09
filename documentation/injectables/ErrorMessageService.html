@@ -93,7 +93,7 @@
                    <compodoc-menu mode="normal"></compodoc-menu>
                </div>
                <!-- START CONTENT -->
-               <div class="content component">
+               <div class="content injectable">
                    <div class="content-data">
 
 
@@ -103,98 +103,44 @@
 
 
 
+
+
+
+
 <ol class="breadcrumb">
-  <li class="breadcrumb-item">Components</li>
-  <li class="breadcrumb-item"
-  >
-  TrackForm</li>
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >ErrorMessageService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item">
-            <a href="#info" class="nav-link active"
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
                 role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
         </li>
         <li class="nav-item">
-            <a href="#source" class="nav-link"
+            <a href="#source" 
+                class="nav-link"
+                
                 role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
-        </li>
-        <li class="nav-item">
-            <a href="#templateData" class="nav-link"
-                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
-        </li>
-        <li class="nav-item">
-            <a href="#tree" class="nav-link"
-                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
         </li>
 </ul>
 
 <div class="tab-content">
-    <div class="tab-pane fade active in" id="info"><p class="comment">
-    <h3>File</h3>
-</p>
-<p class="comment">
-    <code>src/app/track/track-form/track-form.ts</code>
-</p>
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/shared/services/error-message.service.ts</code>
+        </p>
 
 
 
 
 
-
-<section data-compodoc="block-metadata">
-    <h3>Metadata</h3>
-    <table class="table table-sm table-hover metadata">
-        <tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-            <tr>
-                <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-track-form</code></td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-3">imports</td>
-                <td class="col-md-9">
-                            <code>Field</code>
-                </td>
-            </tr>
-
-
-
-
-            <tr>
-                <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./track-form.html</code></td>
-            </tr>
-
-
-
-            <tr>
-                <td class="col-md-3">styleUrl</td>
-                <td class="col-md-9"><code>./track-form.css</code></td>
-            </tr>
-
-
-
-
-
-        </tbody>
-    </table>
-</section>
-
-    <section data-compodoc="block-index">
+            <section data-compodoc="block-index">
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
@@ -207,10 +153,12 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#trackingForm" >trackingForm</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#_error" >_error</a>
                             </li>
                             <li>
-                                <a href="#trackingModel" >trackingModel</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#error" >error</a>
                             </li>
                         </ul>
                     </td>
@@ -225,27 +173,19 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#onSubmit" >onSubmit</a>
+                                <a href="#clear" >clear</a>
                             </li>
-                        </ul>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Outputs</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
                             <li>
-                                <a href="#submitTracking" >submitTracking</a>
+                                <a href="#showMessage" >showMessage</a>
+                            </li>
+                            <li>
+                                <a href="#showServerError" >showServerError</a>
                             </li>
                         </ul>
                     </td>
                 </tr>
+
+
 
 
 
@@ -254,34 +194,7 @@
 </section>
 
 
-
-    <section data-compodoc="block-outputs">
-    <h3 id="outputs">Outputs</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="submitTracking"></a>
-                        <b>submitTracking</b>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../interfaces/TrackingModel.html" target="_self" >TrackingModel</a></code>
-
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/track/track-form/track-form.ts:12</a></div>
-                            </td>
-                        </tr>
-            </tbody>
-        </table>
-</section>
-
-
-    <section data-compodoc="block-methods">
+            <section data-compodoc="block-methods">
     
     <h3 id="methods">
         Methods
@@ -290,24 +203,61 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="onSubmit"></a>
+                    <a name="clear"></a>
                     <span class="name">
-                        <span ><b>onSubmit</b></span>
-                        <a href="#onSubmit"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>clear</b></span>
+                        <a href="#clear"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>onSubmit(event: Event)</code>
+<code>clear()</code>
                 </td>
             </tr>
 
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/track/track-form/track-form.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="25"
+                                    class="link-to-prism">src/shared/services/error-message.service.ts:25</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showMessage"></a>
+                    <span class="name">
+                        <span ><b>showMessage</b></span>
+                        <a href="#showMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showMessage(message: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="10"
+                                    class="link-to-prism">src/shared/services/error-message.service.ts:10</a></div>
                         </td>
                     </tr>
 
@@ -328,9 +278,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                                <td>event</td>
+                                                <td>message</td>
                                             <td>
-                                                        <code>Event</code>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                             </td>
 
                                             <td>
@@ -353,8 +303,45 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showServerError"></a>
+                    <span class="name">
+                        <span ><b>showServerError</b></span>
+                        <a href="#showServerError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>showServerError()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="19"
+                                    class="link-to-prism">src/shared/services/error-message.service.ts:19</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
-    <section data-compodoc="block-properties">
+            <section data-compodoc="block-properties">
     
     <h3 id="inputs">
         Properties
@@ -363,10 +350,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="trackingForm"></a>
+                    <a name="_error"></a>
                     <span class="name">
-                        <span ><b>trackingForm</b></span>
-                        <a href="#trackingForm"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Private</span>
+                        <span ><b>_error</b></span>
+                        <a href="#_error"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -378,17 +366,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>form(this.trackingModel, (fieldPath) &#x3D;&gt; {
-    required(fieldPath.trackingId, { message: &#x27;Tracking number is required&#x27; });
-    required(fieldPath.zipCode, { message: &#x27;Zip code is required&#x27; });
-    max(fieldPath.trackingId, 9999999999, { message: &#x27;Tracking number cannot exceed 10 digits&#x27; });
-    max(fieldPath.zipCode, 99999, { message: &#x27;Zip code cannot exceed 5 digits&#x27; });
-  })</code>
+                        <i>Default value : </i><code>signal&lt;string | null&gt;(null)</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/track/track-form/track-form.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/shared/services/error-message.service.ts:7</a></div>
                         </td>
                     </tr>
 
@@ -399,10 +382,11 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="trackingModel"></a>
+                    <a name="error"></a>
                     <span class="name">
-                        <span ><b>trackingModel</b></span>
-                        <a href="#trackingModel"><span class="icon ion-ios-link"></span></a>
+                            <span class="modifier">Readonly</span>
+                        <span ><b>error</b></span>
+                        <a href="#error"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
@@ -414,15 +398,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>signal&lt;TrackingModel&gt;({
-    zipCode: 0,
-    trackingId: 0,
-  })</code>
+                        <i>Default value : </i><code>this._error.asReadonly()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/track/track-form/track-form.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/shared/services/error-message.service.ts:8</a></div>
                         </td>
                     </tr>
 
@@ -431,104 +412,42 @@
     </table>
 </section>
 
-</div>
+    </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, output, signal } from &#x27;@angular/core&#x27;;
-import { Field, form, max, required } from &#x27;@angular/forms/signals&#x27;;
-import { TrackingModel } from &#x27;../../../shared/models/models&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable, signal } from &#x27;@angular/core&#x27;;
 
-@Component({
-  selector: &#x27;app-track-form&#x27;,
-  imports: [Field],
-  templateUrl: &#x27;./track-form.html&#x27;,
-  styleUrl: &#x27;./track-form.css&#x27;,
+@Injectable({
+  providedIn: &#x27;root&#x27;,
 })
-export class TrackForm {
-  submitTracking &#x3D; output&lt;TrackingModel&gt;();
+export class ErrorMessageService {
+  private _error &#x3D; signal&lt;string | null&gt;(null);
+  readonly error &#x3D; this._error.asReadonly();
 
-  trackingModel &#x3D; signal&lt;TrackingModel&gt;({
-    zipCode: 0,
-    trackingId: 0,
-  });
+  showMessage(message: string) {
+    this._error.set(message);
 
-  trackingForm &#x3D; form(this.trackingModel, (fieldPath) &#x3D;&gt; {
-    required(fieldPath.trackingId, { message: &#x27;Tracking number is required&#x27; });
-    required(fieldPath.zipCode, { message: &#x27;Zip code is required&#x27; });
-    max(fieldPath.trackingId, 9999999999, { message: &#x27;Tracking number cannot exceed 10 digits&#x27; });
-    max(fieldPath.zipCode, 99999, { message: &#x27;Zip code cannot exceed 5 digits&#x27; });
-  });
+    // Auto-clear after 5 seconds
+    setTimeout(() &#x3D;&gt; {
+      this.clear();
+    }, 5000);
+  }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-    if (this.trackingForm().valid()) {
-      const credentials &#x3D; this.trackingModel();
-      this.submitTracking.emit(credentials);
-    }
+  showServerError() {
+    this.showMessage(
+      &#x27;A server error occurred or the service is unavailable. Please try again later.&#x27;,
+    );
+  }
+
+  clear() {
+    this._error.set(null);
   }
 }
 </code></pre>
     </div>
 
-    <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;form class&#x3D;&quot;container mx-auto p-4 flex flex-col gap-8 items-center&quot; (submit)&#x3D;&quot;onSubmit($event)&quot;&gt;
-  &lt;div class&#x3D;&quot;card w-full shadow-sm border&quot;&gt;
-    &lt;div class&#x3D;&quot;flex flex-col card-body lg:flex-row justify-between&quot;&gt;
-      &lt;label class&#x3D;&quot;input&quot;&gt;
-        &lt;span class&#x3D;&quot;label&quot;&gt;Tracking Number&lt;/span&gt;
-        &lt;input type&#x3D;&quot;number&quot; placeholder&#x3D;&quot;123456&quot; [field]&#x3D;&quot;trackingForm.trackingId&quot; /&gt;
-      &lt;/label&gt;
-      &lt;label class&#x3D;&quot;input&quot;&gt;
-        &lt;span class&#x3D;&quot;label&quot;&gt;ZIP Code&lt;/span&gt;
-        &lt;input type&#x3D;&quot;number&quot; placeholder&#x3D;&quot;1234&quot; [field]&#x3D;&quot;trackingForm.zipCode&quot; /&gt;
-      &lt;/label&gt;
-    &lt;/div&gt;
-    &lt;br /&gt;
-  &lt;/div&gt;
-  &lt;div class&#x3D;&quot;flex justify-end w-full max-w-4xl mt-4&quot;&gt;
-    &lt;button class&#x3D;&quot;btn btn-primary px-10&quot; type&#x3D;&quot;submit&quot;&gt;Submit&lt;/button&gt;
-  &lt;/div&gt;
-&lt;/form&gt;
-</code></pre>
-    </div>
-
-
-    <div class="tab-pane fade " id="tree">
-        <div id="tree-container"></div>
-        <div class="tree-legend">
-            <div class="title">
-                <b>Legend</b>
-            </div>
-            <div>
-                <div class="color htmlelement"></div><span>Html element</span>
-            </div>
-            <div>
-                <div class="color component"></div><span>Component</span>
-            </div>
-            <div>
-                <div class="color directive"></div><span>Html element with directive</span>
-            </div>
-        </div>
-    </div>
-
-    
 </div>
-
-<script src="../js/libs/vis-network.min.js"></script>
-<script src="../js/libs/htmlparser.js"></script>
-<script src="../js/libs/deep-iterator.js"></script>
-<script>
-        var COMPONENT_TEMPLATE = '<div><form class="container mx-auto p-4 flex flex-col gap-8 items-center" (submit)="onSubmit($event)">  <div class="card w-full shadow-sm border">    <div class="flex flex-col card-body lg:flex-row justify-between">      <label class="input">        <span class="label">Tracking Number</span>        <input type="number" placeholder="123456" [field]="trackingForm.trackingId" />      </label>      <label class="input">        <span class="label">ZIP Code</span>        <input type="number" placeholder="1234" [field]="trackingForm.zipCode" />      </label>    </div>    <br />  </div>  <div class="flex justify-end w-full max-w-4xl mt-4">    <button class="btn btn-primary px-10" type="submit">Submit</button>  </div></form></div>'
-    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'CalculatePrice', 'selector': 'app-calculate-price'},{'name': 'CiForm', 'selector': 'app-ci-form'},{'name': 'ContactInformation', 'selector': 'app-contact-information'},{'name': 'Dashboard', 'selector': 'app-dashboard'},{'name': 'Deliver', 'selector': 'app-deliver'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'PackageForm', 'selector': 'app-package-form'},{'name': 'Track', 'selector': 'app-track'},{'name': 'TrackForm', 'selector': 'app-track-form'}];
-    var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'TrackForm'};
-</script>
-<script src="../js/tree.js"></script>
-
-
-
-
 
 
 
@@ -567,8 +486,8 @@ export class TrackForm {
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
-            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'TrackForm.html';
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ErrorMessageService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
