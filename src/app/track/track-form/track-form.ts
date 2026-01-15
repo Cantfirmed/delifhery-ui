@@ -1,4 +1,4 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Field, form, max, required } from '@angular/forms/signals';
 import { TrackingModel } from '../../../shared/models/models';
 
@@ -10,6 +10,7 @@ import { TrackingModel } from '../../../shared/models/models';
 })
 export class TrackForm {
   submitTracking = output<TrackingModel>();
+  loading = input(false);
 
   trackingModel = signal<TrackingModel>({
     zipCode: 0,

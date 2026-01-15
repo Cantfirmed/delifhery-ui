@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environments } from '../../environments/environments';
 import {
   DeliveryCreateModel,
   DeliveryModel,
@@ -15,7 +16,7 @@ import {
 })
 export class DeliveryService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5003';
+  private apiUrl = environments.apiUrl;
 
   // Price Controller
   calculatePrice(packageData: PackageModel): Observable<PriceModel> {
@@ -38,5 +39,9 @@ export class DeliveryService {
     return this.http.get<DeliveryStateModel[]>(
       `${this.apiUrl}/deliverystate/history/${deliveryData.trackingId}?zipCode=${deliveryData.zipCode}`,
     );
+  }
+
+  subscribeToNotifications(trackingId: number, zipCode: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/notifications`, { trackingId, zipCode });
   }
 }

@@ -55,7 +55,12 @@
       }
     </div>
     <div class="md:ml-auto">
-      <button class="btn btn-primary px-8" type="submit">Create</button>
+      <button class="btn btn-primary px-8" type="submit" [disabled]="loading()">
+        @if (loading()) {
+          <span class="loading loading-spinner loading-sm"></span>
+        }
+        Create
+      </button>
     </div>
   </div>
 </form>

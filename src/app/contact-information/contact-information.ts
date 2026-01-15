@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { finalize } from 'rxjs';
 import { ContactInformationModel } from '../../shared/models/models';
 import { ContactService } from '../../shared/services/contact.service';
 import { CiForm } from './ci-form/ci-form';
@@ -13,6 +14,7 @@ export class ContactInformation implements OnInit {
   private contactService = inject(ContactService);
   contactInformation = signal<ContactInformationModel | null>(null);
   allContactInformation = signal<ContactInformationModel[] | null>(null);
+  loading = signal(false);
 
   ngOnInit() {
     this.listAll();
@@ -26,12 +28,16 @@ export class ContactInformation implements OnInit {
   }
 
   createNew(contactInfo: ContactInformationModel) {
-    this.contactService.addNewContactInformation(contactInfo).subscribe({
-      next: (info) => {
-        this.allContactInformation.update((current) => [...(current || []), info]);
-        this.contactInformation.set(info);
-      },
-      error: (err) => console.error('Error creating contact information:', err),
-    });
+    this.loading.set(true);
+    this.contactService
+      .addNewContactInformation(contactInfo)
+      .pipe(finalize(() => this.loading.set(false)))
+      .subscribe({
+        next: (info) => {
+          this.allContactInformation.update((current) => [...(current || []), info]);
+          this.contactInformation.set(info);
+        },
+        error: (err) => console.error('Error creating contact information:', err),
+      });
   }
 }

@@ -13,6 +13,13 @@
     <br />
   </div>
   <div class="flex justify-end w-full max-w-4xl mt-4">
-    <button class="btn btn-primary px-10" type="submit">Submit</button>
+    <button #trackButton class="btn btn-primary px-10" type="submit" [disabled]="loading()">
+      @if (loading()) {
+        <span class="loading loading-spinner"></span>
+        Tracking...
+      } @else {
+        Track
+      }
+    </button>
   </div>
 </form>

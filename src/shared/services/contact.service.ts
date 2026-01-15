@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environments } from '../../environments/environments';
 import { ContactInformationModel } from '../models/models';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { ContactInformationModel } from '../models/models';
 })
 export class ContactService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:5003';
+  private apiUrl = environments.apiUrl;
 
   getContactInformation(): Observable<ContactInformationModel[]> {
     return this.http.get<ContactInformationModel[]>(`${this.apiUrl}/contactinfos`);

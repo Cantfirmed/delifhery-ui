@@ -15,7 +15,14 @@
     </div>
   </div>
 
-  @if (price() !== null) {
+  @if (loading()) {
+    <div class="mt-6 p-4 bg-base-200 rounded-lg shadow-md animate-pulse">
+      <div class="flex flex-col gap-3">
+        <div class="skeleton h-8 w-48"></div>
+        <div class="skeleton h-10 w-40"></div>
+      </div>
+    </div>
+  } @else if (price() !== null) {
     <div class="mt-6 p-4 bg-base-200 rounded-lg shadow-md">
       <h2 class="text-xl">
         Calculated Price:

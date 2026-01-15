@@ -30,7 +30,7 @@
 
     <div class="card w-full shadow-sm border bg-base-100">
       <div class="card-body">
-        <app-ci-form (submitForm)="createNew($event)"></app-ci-form>
+        <app-ci-form (submitForm)="createNew($event)" [loading]="loading()"></app-ci-form>
       </div>
     </div>
   </div>

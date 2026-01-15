@@ -11,11 +11,24 @@
 
   <div class="card bg-base-100 shadow-sm border border-base-300 mb-8">
     <div class="card-body">
-      <app-track-form (submitTracking)="onTrack($event)"></app-track-form>
+      <app-track-form (submitTracking)="onTrack($event)" [loading]="loading()"></app-track-form>
     </div>
   </div>
 
-  @if (delivery(); as d) {
+  @if (loading()) {
+    <div class="card bg-base-100 shadow-sm border border-base-300 animate-pulse">
+      <div class="flex flex-col">
+        <div class="flex w-full flex-col gap-4">
+          <div class="skeleton h-64 w-full"></div>
+          <div class="skeleton h-4 w-full"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="flex w-full flex-col gap-4">
+          <div class="skeleton h-4 w-full"></div>
+        </div>
+      </div>
+    </div>
+  } @else if (delivery(); as d) {
     <div class="card bg-base-100 shadow-sm border border-base-300">
       <div class="card-body">
         <div class="flex flex-col md:flex-row justify-between items-start gap-8">
@@ -79,6 +92,77 @@
                 >
               </div>
             }
+
+            <div class="pt-4">
+              @if (authService.isLoggedIn()) {
+                @if (subscribed()) {
+                  <button class="btn btn-success btn-sm" disabled>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="size-5"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      />
+                    </svg>
+                    Subscribed
+                  </button>
+                } @else {
+                  <button
+                    class="btn btn-outline btn-primary btn-sm"
+                    (click)="subscribe()"
+                    [disabled]="subscribing()"
+                  >
+                    @if (subscribing()) {
+                      <span class="loading loading-spinner loading-sm"></span>
+                    } @else {
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="size-5"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
+                        />
+                      </svg>
+                    }
+                    Subscribe to Notifications
+                  </button>
+                }
+              } @else {
+                <div class="alert alert-info shadow-sm">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
+                    />
+                  </svg>
+                  <span>
+                    <button class="link link-primary" (click)="authService.login()">Log in</button>
+                    to subscribe to package notifications.
+                  </span>
+                </div>
+              }
+            </div>
           </div>
 
           @if (d.label) {
@@ -96,7 +180,7 @@
                   />
                 </div>
               </div>
-              <button class="btn btn-ghost btn-sm gap-2" onclick="window.print()">
+              <button class="btn btn-primary btn-sm gap-2" onclick="window.print()">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

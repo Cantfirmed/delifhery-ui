@@ -1,4 +1,4 @@
-import { Component, output, signal } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { Field, form, required, validate } from '@angular/forms/signals';
 import { ContactInformationModel } from '../../../shared/models/models';
 
@@ -10,6 +10,7 @@ import { ContactInformationModel } from '../../../shared/models/models';
 })
 export class CiForm {
   submitForm = output<ContactInformationModel>();
+  loading = input(false);
 
   submitted = signal(false);
 
