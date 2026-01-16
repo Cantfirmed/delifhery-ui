@@ -5,6 +5,7 @@ import { finalize } from 'rxjs';
 import { AuthService } from '../../shared/auth/auth.service';
 import { PackageModel } from '../../shared/models/models';
 import { DeliveryService } from '../../shared/services/delivery.service';
+import { ErrorMessageService } from '../../shared/services/error-message.service';
 import { PackageForm } from '../package-form/package-form';
 
 @Component({
@@ -16,6 +17,7 @@ import { PackageForm } from '../package-form/package-form';
 export class CalculatePrice {
   private deliveryService = inject(DeliveryService);
   private router = inject(Router);
+  private errorMessageService = inject(ErrorMessageService);
   private authService = inject(AuthService);
 
   price = signal<number | null>(null);
@@ -32,7 +34,8 @@ export class CalculatePrice {
       .pipe(finalize(() => this.loading.set(false)))
       .subscribe({
         next: (price) => this.price.set(price.price),
-        error: (err) => console.error('Error calculating price:', err),
+        error: () =>
+          this.errorMessageService.showMessage('Error calculating price. Please try again later.'),
       });
   }
 

@@ -39,7 +39,7 @@ export class CiForm {
         }
       } else if (type === 'PhoneNumber') {
         const normalized = val.replace(/[\s()-]/g, ''); // drop common formatting chars
-        if (!normalized.match(/^\+?[1-9]\d{6,14}$/)) {
+        if (!normalized.match(/^\+?[1-9][0-9]{7,14}$/)) {
           return { kind: 'invalidPhone', message: 'Invalid phone number format' };
         }
       }
@@ -54,6 +54,11 @@ export class CiForm {
       const credentials = this.CIModel();
       console.log('Submitting:', credentials);
       this.submitForm.emit(credentials);
+      this.CIModel.set({
+        type: 'Email',
+        value: '',
+      });
+      this.submitted.set(false);
     }
   }
 }

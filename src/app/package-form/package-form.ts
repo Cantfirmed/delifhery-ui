@@ -1,5 +1,5 @@
 import { Component, effect, input, output, signal } from '@angular/core';
-import { Field, form, required, min } from '@angular/forms/signals';
+import { Field, form, max, min, required } from '@angular/forms/signals';
 import { PackageModel } from '../../shared/models/models';
 
 @Component({
@@ -50,6 +50,7 @@ export class PackageForm {
     required(fieldPath.sender.street, { message: 'Street is required' });
     required(fieldPath.sender.city, { message: 'City is required' });
     required(fieldPath.sender.zipCode, { message: 'ZIP code is required' });
+    max(fieldPath.sender.zipCode, 99999, { message: 'ZIP code cannot exceed 5 digits' });
     required(fieldPath.sender.country, { message: 'Country is required' });
 
     // Recipient validations
@@ -57,6 +58,7 @@ export class PackageForm {
     required(fieldPath.recipient.street, { message: 'Street is required' });
     required(fieldPath.recipient.city, { message: 'City is required' });
     required(fieldPath.recipient.zipCode, { message: 'ZIP code is required' });
+    max(fieldPath.recipient.zipCode, 99999, { message: 'ZIP code cannot exceed 5 digits' });
     required(fieldPath.recipient.country, { message: 'Country is required' });
 
     // Package details validations

@@ -2,6 +2,27 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
 
+## Component Tree
+
+```mermaid
+graph TD
+    %% Root and Main Layout
+    App[App (Root)] --> Navbar
+    App --> RouterOutlet[Router Outlet]
+
+    %% Routes defined inside Router Outlet
+    RouterOutlet --> Track["Track (öffentlich)"]
+    RouterOutlet --> CalculatePrice["CalculatePrice (öffentlich)"]
+    RouterOutlet --> Deliver["Deliver (geschützt)"]
+    RouterOutlet --> ContactInfo["ContactInformation (geschützt)"]
+
+    %% Children of specific routes
+    Track --> TrackForm
+    CalculatePrice --> PackageForm1[PackageForm]
+    Deliver --> PackageForm2[PackageForm]
+    ContactInfo --> CIForm
+```
+
 ## Implementierung der geforderten Funktionalitat
 
 - Ansprechendes Design des Web Frontends (hier geht es weniger um das Aussehen selbst,
