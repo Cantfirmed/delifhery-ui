@@ -26,7 +26,6 @@ src/
 ├── app/                          # Angular Komponenten
 │   ├── calculate-price/          # Preisberechnung
 │   ├── contact-information/      # Kontaktinformationen (geschützt)
-│   ├── dashboard/                # Dashboard (geschützt)
 │   ├── deliver/                  # Paketaufgabe (geschützt)
 │   ├── navbar/                   # Navigation
 │   ├── package-form/             # Wiederverwendbares Paketformular

@@ -9,7 +9,8 @@
   body * {
     visibility: hidden;
   }
-  #printable-area, #printable-area * {
+  #printable-area,
+  #printable-area * {
     visibility: visible;
   }
   #printable-area {

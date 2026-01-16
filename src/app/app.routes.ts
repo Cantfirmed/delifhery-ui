@@ -11,6 +11,5 @@ export const routes: Routes = [
   { path: 'calculate-price', component: CalculatePrice },
   // Disable tab if not logged in?
   { path: 'deliver', component: Deliver, canActivate: [authGuard] },
-  // { path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
   { path: 'contact-information', component: ContactInformation, canActivate: [authGuard] },
 ];
