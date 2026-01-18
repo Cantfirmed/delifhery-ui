@@ -99,7 +99,23 @@
 
 <h1>DelifheryGui</h1>
 <p>This project was generated using <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 21.0.4.</p>
-<h2>Implementierung der geforderten Funktionalitat</h2>
+<h2>Component Tree</h2>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-mermaid">graph TD
+    %% Root and Main Layout
+    App[App (Root)] --&gt; Navbar
+    App --&gt; RouterOutlet[Router Outlet]
+
+    %% Routes defined inside Router Outlet
+    RouterOutlet --&gt; Track[&quot;Track (öffentlich)&quot;]
+    RouterOutlet --&gt; CalculatePrice[&quot;CalculatePrice (öffentlich)&quot;]
+    RouterOutlet --&gt; Deliver[&quot;Deliver (geschützt)&quot;]
+    RouterOutlet --&gt; ContactInfo[&quot;ContactInformation (geschützt)&quot;]
+
+    %% Children of specific routes
+    Track --&gt; TrackForm
+    CalculatePrice --&gt; PackageForm1[PackageForm]
+    Deliver --&gt; PackageForm2[PackageForm]
+    ContactInfo --&gt; CIForm</code></pre></div><h2>Implementierung der geforderten Funktionalitat</h2>
 <ul>
 <li>Ansprechendes Design des Web Frontends (hier geht es weniger um das Aussehen selbst,
 sondern um die ubersichtliche Darstellung, Darstellung nur sinnvoller Daten, sowie logi-

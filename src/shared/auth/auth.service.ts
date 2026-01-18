@@ -1,4 +1,5 @@
 import { Injectable, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 
 const authConfig: AuthConfig = {
@@ -16,6 +17,8 @@ const authConfig: AuthConfig = {
 })
 export class AuthService {
   private oauthService = inject(OAuthService);
+  private router = inject(Router);
+  private readonly postLoginRedirectKey = 'post_login_redirect';
 
   isLoggedIn = signal(false);
   userProfile = signal<Record<string, unknown> | undefined>(undefined);
@@ -41,17 +44,36 @@ export class AuthService {
     this.isLoggedIn.set(hasToken);
     if (hasToken) {
       this.userProfile.set(this.oauthService.getIdentityClaims() as Record<string, unknown>);
+      this.handlePostLoginRedirect();
     } else {
       this.userProfile.set(undefined);
     }
   }
 
-  login() {
+  login(targetPath?: string) {
+    if (targetPath) {
+      this.storePostLoginRedirect(targetPath);
+    }
     this.oauthService.initLoginFlow();
   }
 
   logout() {
     this.oauthService.logOut();
+  }
+
+  private storePostLoginRedirect(targetPath: string) {
+    const normalizedPath = targetPath.startsWith('/') ? targetPath : `/${targetPath}`;
+    sessionStorage.setItem(this.postLoginRedirectKey, normalizedPath);
+  }
+
+  private handlePostLoginRedirect() {
+    const target = sessionStorage.getItem(this.postLoginRedirectKey);
+    if (target && this.router.url !== target) {
+      this.router.navigateByUrl(target);
+    }
+    if (target) {
+      sessionStorage.removeItem(this.postLoginRedirectKey);
+    }
   }
 
   getAccessToken(): string | null {

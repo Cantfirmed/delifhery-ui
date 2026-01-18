@@ -234,6 +234,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -257,7 +271,29 @@
 </section>
 
 
-
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading"></a>
+                        <b>loading</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
@@ -309,8 +345,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="49"
-                                    class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:49</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="50"
+                                    class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:50</a></div>
                         </td>
                     </tr>
 
@@ -401,7 +437,7 @@
         }
       } else if (type &#x3D;&#x3D;&#x3D; &#x27;PhoneNumber&#x27;) {
         const normalized &#x3D; val.replace(/[\s()-]/g, &#x27;&#x27;); // drop common formatting chars
-        if (!normalized.match(/^\+?[1-9]\d{6,14}$/)) {
+        if (!normalized.match(/^\+?[1-9][0-9]{7,14}$/)) {
           return { kind: &#x27;invalidPhone&#x27;, message: &#x27;Invalid phone number format&#x27; };
         }
       }
@@ -412,7 +448,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:21</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:22</a></div>
                         </td>
                     </tr>
 
@@ -446,7 +482,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -477,7 +513,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/contact-information/ci-form/ci-form.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -490,7 +526,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, output, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, input, output, signal } from &#x27;@angular/core&#x27;;
 import { Field, form, required, validate } from &#x27;@angular/forms/signals&#x27;;
 import { ContactInformationModel } from &#x27;../../../shared/models/models&#x27;;
 
@@ -502,6 +538,7 @@ import { ContactInformationModel } from &#x27;../../../shared/models/models&#x27
 })
 export class CiForm {
   submitForm &#x3D; output&lt;ContactInformationModel&gt;();
+  loading &#x3D; input(false);
 
   submitted &#x3D; signal(false);
 
@@ -530,7 +567,7 @@ export class CiForm {
         }
       } else if (type &#x3D;&#x3D;&#x3D; &#x27;PhoneNumber&#x27;) {
         const normalized &#x3D; val.replace(/[\s()-]/g, &#x27;&#x27;); // drop common formatting chars
-        if (!normalized.match(/^\+?[1-9]\d{6,14}$/)) {
+        if (!normalized.match(/^\+?[1-9][0-9]{7,14}$/)) {
           return { kind: &#x27;invalidPhone&#x27;, message: &#x27;Invalid phone number format&#x27; };
         }
       }
@@ -545,6 +582,11 @@ export class CiForm {
       const credentials &#x3D; this.CIModel();
       console.log(&#x27;Submitting:&#x27;, credentials);
       this.submitForm.emit(credentials);
+      this.CIModel.set({
+        type: &#x27;Email&#x27;,
+        value: &#x27;&#x27;,
+      });
+      this.submitted.set(false);
     }
   }
 }
@@ -609,7 +651,12 @@ export class CiForm {
       }
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;md:ml-auto&quot;&gt;
-      &lt;button class&#x3D;&quot;btn btn-primary px-8&quot; type&#x3D;&quot;submit&quot;&gt;Create&lt;/button&gt;
+      &lt;button class&#x3D;&quot;btn btn-primary px-8&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;loading()&quot;&gt;
+        @if (loading()) {
+          &lt;span class&#x3D;&quot;loading loading-spinner loading-sm&quot;&gt;&lt;/span&gt;
+        }
+        Create
+      &lt;/button&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/form&gt;
@@ -642,8 +689,8 @@ export class CiForm {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="flex-1">  <h2 class="text-2xl font-bold mb-4">Add Contact Information</h2></div><form (submit)="onSubmit($event)" class="flex flex-col max-w-4xl">  <div class="flex flex-col md:flex-row gap-4 mb-6 items-end">    <label class="select flex-1">      <span class="label">Type</span>      <select [field]="CIForm.type">        <option value="" disabled selected>Select Contact Type</option>        <option value="Email">Email</option>        <option value="PhoneNumber">Phone</option>      </select>    </label>    @if (CIForm.type().value() === \'Email\') {      <label class="flex-1">        <span class="label">Email Address</span>        <input class="input w-full" type="text" placeholder="mm@mail.com" [field]="CIForm.value" />      </label>    } @else if (CIForm.type().value() === \'PhoneNumber\') {      <label class="flex-1">        <span class="label">Phone Number</span>        <input class="input w-full" type="text" placeholder="+123456789" [field]="CIForm.value" />      </label>    }  </div>  <div class="flex flex-col md:flex-row items-start gap-4">    <div class="flex-1 w-full">      @if (submitted() && CIForm.value().invalid()) {        <div class="alert alert-error shadow-sm" role="alert">          <svg            xmlns="http://www.w3.org/2000/svg"            fill="none"            viewBox="0 0 24 24"            stroke-width="1.5"            stroke="currentColor"            class="size-6"          >            <path              stroke-linecap="round"              stroke-linejoin="round"              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"            />          </svg>          <div class="flex flex-col gap-1">            <span class="font-semibold text-sm">Please fix the following:</span>            <ul class="list-disc list-inside text-sm leading-relaxed">              @for (error of CIForm.value().errors(); track error) {                <li>{{ error.message }}</li>              }            </ul>          </div>        </div>      }    </div>    <div class="md:ml-auto">      <button class="btn btn-primary px-8" type="submit">Create</button>    </div>  </div></form></div>'
-    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'CalculatePrice', 'selector': 'app-calculate-price'},{'name': 'CiForm', 'selector': 'app-ci-form'},{'name': 'ContactInformation', 'selector': 'app-contact-information'},{'name': 'Dashboard', 'selector': 'app-dashboard'},{'name': 'Deliver', 'selector': 'app-deliver'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'PackageForm', 'selector': 'app-package-form'},{'name': 'Track', 'selector': 'app-track'},{'name': 'TrackForm', 'selector': 'app-track-form'}];
+        var COMPONENT_TEMPLATE = '<div><div class="flex-1">  <h2 class="text-2xl font-bold mb-4">Add Contact Information</h2></div><form (submit)="onSubmit($event)" class="flex flex-col max-w-4xl">  <div class="flex flex-col md:flex-row gap-4 mb-6 items-end">    <label class="select flex-1">      <span class="label">Type</span>      <select [field]="CIForm.type">        <option value="" disabled selected>Select Contact Type</option>        <option value="Email">Email</option>        <option value="PhoneNumber">Phone</option>      </select>    </label>    @if (CIForm.type().value() === \'Email\') {      <label class="flex-1">        <span class="label">Email Address</span>        <input class="input w-full" type="text" placeholder="mm@mail.com" [field]="CIForm.value" />      </label>    } @else if (CIForm.type().value() === \'PhoneNumber\') {      <label class="flex-1">        <span class="label">Phone Number</span>        <input class="input w-full" type="text" placeholder="+123456789" [field]="CIForm.value" />      </label>    }  </div>  <div class="flex flex-col md:flex-row items-start gap-4">    <div class="flex-1 w-full">      @if (submitted() && CIForm.value().invalid()) {        <div class="alert alert-error shadow-sm" role="alert">          <svg            xmlns="http://www.w3.org/2000/svg"            fill="none"            viewBox="0 0 24 24"            stroke-width="1.5"            stroke="currentColor"            class="size-6"          >            <path              stroke-linecap="round"              stroke-linejoin="round"              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"            />          </svg>          <div class="flex flex-col gap-1">            <span class="font-semibold text-sm">Please fix the following:</span>            <ul class="list-disc list-inside text-sm leading-relaxed">              @for (error of CIForm.value().errors(); track error) {                <li>{{ error.message }}</li>              }            </ul>          </div>        </div>      }    </div>    <div class="md:ml-auto">      <button class="btn btn-primary px-8" type="submit" [disabled]="loading()">        @if (loading()) {          <span class="loading loading-spinner loading-sm"></span>        }        Create      </button>    </div>  </div></form></div>'
+    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'CalculatePrice', 'selector': 'app-calculate-price'},{'name': 'CiForm', 'selector': 'app-ci-form'},{'name': 'ContactInformation', 'selector': 'app-contact-information'},{'name': 'Deliver', 'selector': 'app-deliver'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'PackageForm', 'selector': 'app-package-form'},{'name': 'Track', 'selector': 'app-track'},{'name': 'TrackForm', 'selector': 'app-track-form'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CiForm'};
 </script>

@@ -28,7 +28,7 @@ src/
 │   ├── navbar/                   # Navigation
 │   ├── package-form/             # Paketformular
 │   ├── track/                    # Paketverfolgung (öffentlich)
-│   │   ├── trackForm/            # Trackformular
+│   │   ├── trackForm/            # Paketverfolgungsformular
 │   ├── app.config.ts             # App-Konfiguration
 │   └── app.routes.ts             # Routing-Konfiguration
 └── shared/                       # Geteilte Ressourcen
@@ -62,7 +62,7 @@ src/
 
 Wird verwendet von:
 
-- `Track`: Paketverfolgung und Historie abrufen
+- `Track`: Paketverfolgung und Statushistorie abrufen
 - `CalculatePrice`: Preisberechnung durchführen
 - `Deliver`: Neue Pakete registrieren
 
@@ -99,11 +99,15 @@ Wird verwendet von:
 
 ### Dokumentation mit Compodoc
 
+Ich habe eine Dokumentation mit Compodoc erstellt, da ich das aber erst zum Schluss gemacht habe ist die Dokumentation ziemlich leer.
+
 ```bash
 npm run compodoc:build-and-serve
 ```
 
 Leider gab es keinen Komponentenbaum, deswegen habe ich diesen manuell erstellt.
+
+Ich hätte die Dokumentation mit einem Agenten generieren lassen können, aber ich wollte sicherstellen dass die Dokumentation korrekt ist.
 
 ---
 
@@ -119,12 +123,14 @@ Leider gab es keinen Komponentenbaum, deswegen habe ich diesen manuell erstellt.
 
 /track (Paketverfolgung)
 └── Eingabe: Tracking-ID + PLZ
-    └── Anzeige: Paketdetails + Historie
-        └── (Optional wenn eingeloggt) Subscribe to Notifications
+    └── Anzeige: Paketdetails + Status-Historie
+        └── (Optional wenn eingeloggt) Anmelden für Benachrichtigungen
+        └── (Optional wenn nicht eingeloggt) Info zur Möglichkeit Benachrichtigungen zu aktivieren wenn angemeldet
 
 /calculate-price (Preiskalkulation)
 └── Eingabe: Paketdaten (Sender, Empfänger, Abmessungen)
     └── Anzeige: Berechneter Preis
+     └── (Optional wenn eingeloggt) Möglichkeit Paketdaten für Delivery zu übernehmen
 ```
 
 ### Geschützte Routes (Login erforderlich)
@@ -140,7 +146,9 @@ Leider gab es keinen Komponentenbaum, deswegen habe ich diesen manuell erstellt.
 /contact-information (Kontaktinformationen)
 └── Authentifizierung prüfen
     ├── Nicht eingeloggt → Login-Redirect
-    └── Eingeloggt → Kontaktdaten anzeigen/bearbeiten
+    └── Eingeloggt → Kontaktdaten anzeigen
+        └── Eingabe: Kontaktdaten hinzufügen
+
 ```
 
 <div style="page-break-after: always;"></div>
@@ -358,7 +366,7 @@ Die folgenden KI-Werkzeuge wurden während der Entwicklung eingesetzt:
 
 #### Schwierigkeiten mit Signal Forms
 
-Auch wenn er Zugang zu dem Angular-MCP Server hatte und in der
+Auch wenn der Agent Zugang zu dem Angular-MCP Server hatte und in der
 GEMINI.md File angegeben wurde dass es `Signal Forms` wirklich gibt,
 wurden zu Beginn von jeder Conversation sehr viele Tokens verschwendet
 damit Gemini überzeugt sein konnte dass Signal Forms wirklich existieren.
@@ -408,9 +416,13 @@ export class DeliveryService {
 
 **Wie stellen Sie sicher, dass bestimmte Seiten nur nach einem Login zugreifbar sind?**
 
-#### Implementierung mit AuthGuard
+#### OAuth2/OIDC mit Keycloak
 
-Die Anwendung nutzt Angular Guards, um Routen zu schützen:
+- **Library**: `angular-oauth2-oidc`
+- **Provider**: Keycloak
+- **Flow**: Authorization Code Flow mit PKCE
+
+#### Implementierung mit AuthGuard
 
 **Datei**: `src/shared/auth/auth.guard.ts`
 
@@ -452,6 +464,8 @@ export const routes: Routes = [
 ];
 ```
 
+<div style="page-break-after: always;"></div>
+
 #### AuthService - Login-Status-Prüfung
 
 Ich habe die OAuth2/OIDC-Logik in einem separaten Service gekapselt, da ich zu Beginn glaubte, dass ich noch weitere
@@ -476,14 +490,6 @@ export class AuthService {
   }
 }
 ```
-
-#### OAuth2/OIDC mit Keycloak
-
-Die Anwendung verwendet:
-
-- **Library**: `angular-oauth2-oidc`
-- **Provider**: Keycloak
-- **Flow**: Authorization Code Flow mit PKCE
 
 #### Bearer-Token fürs Backend
 
@@ -514,6 +520,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 ```
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 6c. Dateneingabe-Validierung
 

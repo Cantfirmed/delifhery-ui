@@ -231,6 +231,20 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#loading" >loading</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -254,7 +268,29 @@
 </section>
 
 
-
+    <section data-compodoc="block-inputs">
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="loading"></a>
+                        <b>loading</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/track/track-form/track-form.ts:13</a></div>
+                            </td>
+                        </tr>
+            </tbody>
+        </table>
+</section>
     <section data-compodoc="block-outputs">
     <h3 id="outputs">Outputs</h3>
         <table class="table table-sm table-bordered">
@@ -306,8 +342,8 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="26"
-                                    class="link-to-prism">src/app/track/track-form/track-form.ts:26</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="27"
+                                    class="link-to-prism">src/app/track/track-form/track-form.ts:27</a></div>
                         </td>
                     </tr>
 
@@ -388,7 +424,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/track/track-form/track-form.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/track/track-form/track-form.ts:20</a></div>
                         </td>
                     </tr>
 
@@ -422,7 +458,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/track/track-form/track-form.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/track/track-form/track-form.ts:15</a></div>
                         </td>
                     </tr>
 
@@ -435,7 +471,7 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, output, signal } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, input, output, signal } from &#x27;@angular/core&#x27;;
 import { Field, form, max, required } from &#x27;@angular/forms/signals&#x27;;
 import { TrackingModel } from &#x27;../../../shared/models/models&#x27;;
 
@@ -447,6 +483,7 @@ import { TrackingModel } from &#x27;../../../shared/models/models&#x27;;
 })
 export class TrackForm {
   submitTracking &#x3D; output&lt;TrackingModel&gt;();
+  loading &#x3D; input(false);
 
   trackingModel &#x3D; signal&lt;TrackingModel&gt;({
     zipCode: 0,
@@ -487,7 +524,14 @@ export class TrackForm {
     &lt;br /&gt;
   &lt;/div&gt;
   &lt;div class&#x3D;&quot;flex justify-end w-full max-w-4xl mt-4&quot;&gt;
-    &lt;button class&#x3D;&quot;btn btn-primary px-10&quot; type&#x3D;&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;button #trackButton class&#x3D;&quot;btn btn-primary px-10&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;loading()&quot;&gt;
+      @if (loading()) {
+        &lt;span class&#x3D;&quot;loading loading-spinner&quot;&gt;&lt;/span&gt;
+        Tracking...
+      } @else {
+        Track
+      }
+    &lt;/button&gt;
   &lt;/div&gt;
 &lt;/form&gt;
 </code></pre>
@@ -519,8 +563,8 @@ export class TrackForm {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><form class="container mx-auto p-4 flex flex-col gap-8 items-center" (submit)="onSubmit($event)">  <div class="card w-full shadow-sm border">    <div class="flex flex-col card-body lg:flex-row justify-between">      <label class="input">        <span class="label">Tracking Number</span>        <input type="number" placeholder="123456" [field]="trackingForm.trackingId" />      </label>      <label class="input">        <span class="label">ZIP Code</span>        <input type="number" placeholder="1234" [field]="trackingForm.zipCode" />      </label>    </div>    <br />  </div>  <div class="flex justify-end w-full max-w-4xl mt-4">    <button class="btn btn-primary px-10" type="submit">Submit</button>  </div></form></div>'
-    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'CalculatePrice', 'selector': 'app-calculate-price'},{'name': 'CiForm', 'selector': 'app-ci-form'},{'name': 'ContactInformation', 'selector': 'app-contact-information'},{'name': 'Dashboard', 'selector': 'app-dashboard'},{'name': 'Deliver', 'selector': 'app-deliver'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'PackageForm', 'selector': 'app-package-form'},{'name': 'Track', 'selector': 'app-track'},{'name': 'TrackForm', 'selector': 'app-track-form'}];
+        var COMPONENT_TEMPLATE = '<div><form class="container mx-auto p-4 flex flex-col gap-8 items-center" (submit)="onSubmit($event)">  <div class="card w-full shadow-sm border">    <div class="flex flex-col card-body lg:flex-row justify-between">      <label class="input">        <span class="label">Tracking Number</span>        <input type="number" placeholder="123456" [field]="trackingForm.trackingId" />      </label>      <label class="input">        <span class="label">ZIP Code</span>        <input type="number" placeholder="1234" [field]="trackingForm.zipCode" />      </label>    </div>    <br />  </div>  <div class="flex justify-end w-full max-w-4xl mt-4">    <button #trackButton class="btn btn-primary px-10" type="submit" [disabled]="loading()">      @if (loading()) {        <span class="loading loading-spinner"></span>        Tracking...      } @else {        Track      }    </button>  </div></form></div>'
+    var COMPONENTS = [{'name': 'App', 'selector': 'app-root'},{'name': 'CalculatePrice', 'selector': 'app-calculate-price'},{'name': 'CiForm', 'selector': 'app-ci-form'},{'name': 'ContactInformation', 'selector': 'app-contact-information'},{'name': 'Deliver', 'selector': 'app-deliver'},{'name': 'Navbar', 'selector': 'app-navbar'},{'name': 'PackageForm', 'selector': 'app-package-form'},{'name': 'Track', 'selector': 'app-track'},{'name': 'TrackForm', 'selector': 'app-track-form'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TrackForm'};
 </script>
