@@ -53,4 +53,11 @@ export class AuthService {
   logout() {
     this.oauthService.logOut();
   }
+
+  getAccessToken(): string | null {
+    if (!this.oauthService.hasValidAccessToken()) {
+      return null;
+    }
+    return this.oauthService.getAccessToken();
+  }
 }

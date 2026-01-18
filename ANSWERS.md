@@ -4,14 +4,13 @@
 
 - [2. Dokumentation der Architektur](#2-dokumentation-der-architektur)
 - [3. Navigationswege](#3-navigationswege)
-- [4. Bebilderter Testlauf](#4-bebilderter-testlauf)
+- [4. Bebilderter Testlauf](#4-screenshots-der-anwendung)
 - [5. KI-Werkzeuge](#5-ki-werkzeuge)
 - [6. Technische Fragen](#6-technische-fragen)
   - [6a. URL-Änderungen](#6a-url-änderungen)
   - [6b. Login-Schutz](#6b-login-schutz)
   - [6c. Dateneingabe-Validierung](#6c-dateneingabe-validierung)
   - [6d. Backend-Fehlerbehandlung](#6d-backend-fehlerbehandlung)
-- [7. Fragebogen](#7-fragebogen)
 
 ---
 
@@ -19,17 +18,17 @@
 
 ### Projekt-Struktur
 
-Die Anwendung folgt einer klaren Angular-Architektur mit folgender Struktur:
-
 ```
 src/
 ├── app/                          # Angular Komponenten
 │   ├── calculate-price/          # Preisberechnung
 │   ├── contact-information/      # Kontaktinformationen (geschützt)
+│   │   ├── ci-form/              # Kontaktinformationsformular
 │   ├── deliver/                  # Paketaufgabe (geschützt)
 │   ├── navbar/                   # Navigation
-│   ├── package-form/             # Wiederverwendbares Paketformular
+│   ├── package-form/             # Paketformular
 │   ├── track/                    # Paketverfolgung (öffentlich)
+│   │   ├── trackForm/            # Trackformular
 │   ├── app.config.ts             # App-Konfiguration
 │   └── app.routes.ts             # Routing-Konfiguration
 └── shared/                       # Geteilte Ressourcen
@@ -40,27 +39,22 @@ src/
     ├── models/                   # TypeScript Interfaces/DTOs
     │   └── models.ts
     └── services/                 # Business Logic Services
-        ├── delivery.service.ts   # API-Kommunikation
+        ├── delivery.service.ts   # Delivery-API
         ├── contact.service.ts    # Kontakt-API
         └── error-message.service.ts  # Fehler-Management
 ```
 
+<div style="page-break-after: always;"></div>
+
 ### Komponentenbaum
 
-```
-App (Root)
-├── Navbar
-│   └── Login/Logout Button
-└── Router Outlet
-    ├── Track (öffentlich)
-    │   └── TrackForm
-    ├── CalculatePrice (öffentlich)
-    │   └── PackageForm
-    ├── Deliver (geschützt)
-    │   └── PackageForm
-    └── ContactInformation (geschützt)
-        └── ContactForm
-```
+![Komponentenbaum](images/Component-Tree.png)
+
+### Forms
+
+- `PackageForm`
+- `CIForm`
+- `TrackForm`
 
 ### Service-Komponenten Zusammenhang
 
@@ -83,35 +77,15 @@ Wird verwendet von:
 
 #### ErrorMessageService
 
-Wird verwendet von:
+Zeigt Fehlermeldungen zentral in der Anwendung an.
 
-- Alle Komponenten die API-Calls durchführen
-- Zeigt Fehlermeldungen zentral an
+<div style="page-break-after: always;"></div>
 
 #### ContactService
 
 Wird verwendet von:
 
 - `ContactInformation`: Kontaktdaten abrufen und aktualisieren
-
-### Wichtige Komponenten
-
-#### PackageForm (Wiederverwendbare Komponente)
-
-- Formular für Paketdaten (Sender, Empfänger, Abmessungen)
-- Verwendet Angular Reactive Forms mit Signals (`@angular/forms/signals`)
-- Validierung: required, min, max
-- Wird in `CalculatePrice` und `Deliver` wiederverwendet
-
-#### AuthGuard
-
-- Schützt Routen vor unautorisiertem Zugriff
-- Leitet nicht-authentifizierte User zum Login weiter
-
-#### AuthInterceptor
-
-- Fügt automatisch Bearer-Token zu allen HTTP-Requests hinzu
-- Prüft auf gültiges Access Token
 
 ### Technologie-Stack
 
@@ -125,19 +99,15 @@ Wird verwendet von:
 
 ### Dokumentation mit Compodoc
 
-Die vollständige Architekturdokumentation kann mit Compodoc generiert werden:
-
 ```bash
 npm run compodoc:build-and-serve
 ```
 
-Dies generiert eine interaktive Dokumentation mit:
-
-- Service-Dependencies
-- Routing-Übersicht
-- Code-Dokumentation
+Leider gab es keinen Komponentenbaum, deswegen habe ich diesen manuell erstellt.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## 3. Navigationswege
 
@@ -172,6 +142,8 @@ Dies generiert eine interaktive Dokumentation mit:
     ├── Nicht eingeloggt → Login-Redirect
     └── Eingeloggt → Kontaktdaten anzeigen/bearbeiten
 ```
+
+<div style="page-break-after: always;"></div>
 
 ### Navigation Flow mit Login
 
@@ -209,46 +181,139 @@ Navbar (immer sichtbar)
 
 ---
 
-## 4. Bebilderter Testlauf
+<div style="page-break-after: always;"></div>
 
-_Hinweis: Screenshots sollten hier eingefügt werden, die folgende Szenarien zeigen:_
+<style>
+  /* Scope image sizing to screenshots section so two fit per PDF page */
+  #screenshots-section img {
+    max-width: 48%;
+    width: 48%;
+    height: auto;
+    display: inline-block;
+    margin: 0 1% 12px 0;
+    vertical-align: top;
+  }
+</style>
+
+<div id="screenshots-section">
+
+## 4. Screenshots der Anwendung
 
 ### Szenario 1: Paketverfolgung (öffentlich)
 
-1. Screenshot: Track-Seite mit Eingabeformular (Tracking-ID + PLZ)
-2. Screenshot: Angezeigte Paketdetails und Lieferstatus
-3. Screenshot: Historie der Zustandsänderungen
+##### Track-Seite mit Eingabeformular (Tracking-ID + PLZ)
+
+![EmptyTrack](images/track_1.png)
+
+#### Screenshot: Angezeigte Paketdetails und Lieferstatus
+
+![TrackResult](images/track_2.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Szenario 2: Preisberechnung (öffentlich)
 
-1. Screenshot: Calculate-Price-Seite mit leerem Formular
-2. Screenshot: Ausgefülltes Formular mit Paketdaten
-3. Screenshot: Berechneter Preis
+#### Calculate-Price-Seite mit leerem Formular
+
+![EmptyCalculatePrice](images/Calc_Empty.png)
+
+#### Ausgefülltes Formular mit Preis
+
+![CalculatePrice](images/price_calculator.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Validierungsfehler im Formular
+
+![CalculatePriceValidationError](images/Calc_Validation.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Szenario 3: Login-Prozess
 
-1. Screenshot: Versuch, geschützte Seite zu besuchen
-2. Screenshot: Redirect zu Keycloak Login
-3. Screenshot: Erfolgreicher Login, zurück zur App
+#### Versuch, geschützte Seite zu besuchen
+
+![GuardRedirect](images/try_guarded_site.png)
+
+#### Redirect zu Keycloak Login
+
+![KeycloakLogin](images/keycloak_login.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Account erstellen
+
+![KeycloakRegister](images/keycloak_register.png)
+
+#### Erfolgreicher Login, zurück zur App
+
+![DeliveryPageAfterLogin](images/delivery.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Szenario 4: Paketaufgabe (geschützt)
 
-1. Screenshot: Deliver-Seite nach Login
-2. Screenshot: Ausgefülltes Paketformular
-3. Screenshot: Erfolgsmeldung mit Tracking-ID
+#### Deliver-Seite nach Login
+
+![DeliveryPage](images/delivery.png)
+
+#### Ausgefülltes Paketformular
+
+![DeliveryFilledIn](images/delivery_filled.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Erfolgsmeldung mit Tracking-ID
+
+![DeliverySent](images/delivery_sent.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Szenario 5: Kontaktinformationen (geschützt)
 
-1. Screenshot: Contact-Information-Seite
-2. Screenshot: Anzeige/Bearbeitung der Kontaktdaten
+#### Contact-Information-Seite
+
+![ContactInformation](images/contact_information.png)
+
+#### Anzeige/Bearbeitung der Kontaktdaten
+
+![ContactInformationFilled](images/contact_information_2.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Szenario 6: Fehlerbehandlung
 
-1. Screenshot: Fehlermeldung bei ungültiger Tracking-ID
-2. Screenshot: Validierungsfehler im Formular
-3. Screenshot: Server-Fehler-Meldung
+#### Fehlermeldung bei ungültiger Tracking-ID
 
----
+![TrackError](images/track_failure.png)
+
+#### Validierungsfehler im Formular
+
+![FormValidationError](images/contact_information_not_valid.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Server-Fehler-Meldung
+
+![ServerError](images/server_error.png)
+
+### Lightmode
+
+![Lightmode](images/track_light_mode.png)
+
+<div style="page-break-after: always;"></div>
+
+### Druckansicht für Label
+
+![Print](images/Print_label.png)
+
+### Skeleton bei Ladezeiten
+
+![Skeleton](images/skeleton.png)
+
+</div>
+
+<div style="page-break-after: always;"></div>
 
 ## 5. KI-Werkzeuge
 
@@ -256,59 +321,51 @@ _Hinweis: Screenshots sollten hier eingefügt werden, die folgende Szenarien zei
 
 Die folgenden KI-Werkzeuge wurden während der Entwicklung eingesetzt:
 
-1. **GitHub Copilot / Copilot Chat**
-   - Code-Vervollständigung
-   - Generierung von Boilerplate-Code
-   - Refactoring-Vorschläge
+1. **GitHub Copilot**
 
-2. **Gemini**
-   - Architektur-Beratung
-   - Problem-Lösung bei spezifischen Herausforderungen
-   - Code-Review und Optimierungsvorschläge
+- Auto-Completion in VSCode
+
+2. **Gemini / GeminiCLI**
+
+- Generierung von unten angeführten Code-Abschnitten
+
+3. **Angular MCP Server**
+
+- Wie von Angular empfohlen habe ich den MCP Server genutzt
 
 ### Mit KI erstellte Code-Abschnitte
 
 #### 1. PackageForm Component (`src/app/package-form/package-form.ts`)
 
-- Komplette Formular-Validierung mit Angular Signals Forms
-- Generierung der Validierungslogik (required, min, max)
-- **Zeilen 47-69**: Validierungsdefinitionen
+- Nach manueller Implementierung von Validierungen mit Signal Forms
+  wurden die restlichen Validierungen generiert.
 
 #### 2. ErrorMessageService (`src/shared/services/error-message.service.ts`)
 
-- Service für zentrales Error-Handling
-- Signal-basierte State-Management
 - Auto-clear Funktionalität nach 5 Sekunden
-- **Gesamte Datei** mit KI-Unterstützung erstellt
 
 #### 3. AuthInterceptor (`src/shared/auth/auth.interceptor.ts`)
 
 - HTTP-Interceptor zum Hinzufügen von Bearer-Tokens
-- **Zeilen 5-20**: Komplette Interceptor-Logik
 
-#### 4. Error-Handling in Komponenten
+#### 4. Print Label Styling (`src/styles.css`)
 
-- Fehlerbehandlung in `track.ts`, `deliver.ts`, `calculate-price.ts`
-- RxJS `catchError` und `finalize` Operatoren
-- Beispiel in `src/app/track/track.ts`, Zeilen 41-50
+- CSS für Druckansicht von Labels
 
 #### 5. Styling und Layout
 
-- Tailwind CSS Klassen-Kombinationen
-- Responsive Design in `package-form.html`
-- DaisyUI Component-Nutzung
+- Tailwind und DaisyUI CSS Klassen-Kombinationen
 
-### Manuelle Anpassungen
+#### Schwierigkeiten mit Signal Forms
 
-Trotz KI-Unterstützung wurden folgende Bereiche manuell entwickelt/angepasst:
-
-- Routing-Struktur und Guards
-- OAuth2-Konfiguration mit Keycloak
-- Service-Integration mit Backend-API
-- Spezifische Business-Logik
-- Anpassungen an Backend-Schnittstellen
+Auch wenn er Zugang zu dem Angular-MCP Server hatte und in der
+GEMINI.md File angegeben wurde dass es `Signal Forms` wirklich gibt,
+wurden zu Beginn von jeder Conversation sehr viele Tokens verschwendet
+damit Gemini überzeugt sein konnte dass Signal Forms wirklich existieren.
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Technische Fragen
 
@@ -318,7 +375,8 @@ Trotz KI-Unterstützung wurden folgende Bereiche manuell entwickelt/angepasst:
 
 #### Zentralisierte URL-Verwaltung
 
-Die Backend-URL ist zentral in einer Datei konfiguriert:
+Die Backend-URL ist zentral in einer Datei konfiguriert (`environments.ts`), und die Endpunkte selbst
+in den entsprechenden Services.
 
 **Datei**: `src/environments/environments.ts`
 
@@ -327,20 +385,6 @@ export const environments = {
   apiUrl: 'http://localhost:5003',
 };
 ```
-
-#### Eingriff bei URL-Änderung
-
-**Nicht-invasiv:** Um die Backend-URL zu ändern, muss nur die `environments.ts` Datei angepasst werden:
-
-```typescript
-export const environments = {
-  apiUrl: 'https://api.production.com', // Neue URL
-};
-```
-
-#### Verwendung in Services
-
-Alle Services importieren diese zentrale Konfiguration:
 
 **Beispiel aus `delivery.service.ts`:**
 
@@ -356,21 +400,9 @@ export class DeliveryService {
 }
 ```
 
-#### Vorteile dieser Architektur
-
-1. **Single Source of Truth**: URL nur an einer Stelle definiert
-2. **Minimaler Aufwand**: Nur eine Datei muss geändert werden
-3. **Environment-spezifisch**: Kann für dev/staging/prod unterschiedlich sein
-4. **Keine Code-Änderungen**: Services müssen nicht angepasst werden
-5. **Build-Zeit-Ersetzung**: Bei Angular Build werden die Werte eingebettet
-
-#### API-Endpoint-Änderungen
-
-Sollten sich einzelne API-Endpunkte ändern (z.B. `/price` → `/calculate-price`), müssen die entsprechenden Service-Methoden angepasst werden. Diese sind aber klar strukturiert und leicht zu finden im `services/` Verzeichnis.
-
-**Fazit**: URL-Änderungen sind **nicht invasiv** - eine einzige Zeile in `environments.ts` genügt für die gesamte Anwendung.
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### 6b. Login-Schutz
 
@@ -422,6 +454,9 @@ export const routes: Routes = [
 
 #### AuthService - Login-Status-Prüfung
 
+Ich habe die OAuth2/OIDC-Logik in einem separaten Service gekapselt, da ich zu Beginn glaubte, dass ich noch weitere
+Funktionen hinzufügen müsste. Ich bin jetzt dabei geblieben da die Funktionsnamen einfacher sind.
+
 **Datei**: `src/shared/auth/auth.service.ts`
 
 ```typescript
@@ -433,7 +468,7 @@ export class AuthService {
   }
 
   login() {
-    this.oauthService.initLoginFlow(); // Redirect zu Keycloak
+    this.oauthService.initLoginFlow();
   }
 
   logout() {
@@ -450,45 +485,33 @@ Die Anwendung verwendet:
 - **Provider**: Keycloak
 - **Flow**: Authorization Code Flow mit PKCE
 
-#### HTTP-Request-Absicherung
+#### Bearer-Token fürs Backend
 
-Zusätzlich zur Route-Protection wird jeder HTTP-Request automatisch mit einem Bearer-Token versehen:
+Zusätzlich zur Route-Protection wird jeder HTTP-Request automatisch mit einem Bearer-Token versehen. Das wird benötigt
+da das Backend ebenfalls den Token validiert.
 
 **Datei**: `src/shared/auth/auth.interceptor.ts`
 
 ```typescript
-export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  const oauthService = inject(OAuthService);
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { AuthService } from './auth.service';
 
-  if (oauthService.hasValidAccessToken()) {
-    const token = oauthService.getAccessToken();
-    if (token) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    }
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const authService = inject(AuthService);
+
+  const token = authService.getAccessToken();
+  if (token) {
+    req = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 
   return next(req);
 };
 ```
-
-#### Mehrschichtiger Schutz
-
-1. **Frontend-Route-Guard**: Verhindert Zugriff auf geschützte Komponenten
-2. **HTTP-Interceptor**: Fügt Token zu Backend-Requests hinzu
-3. **Backend-Validierung**: Backend prüft Token-Gültigkeit (nicht im Frontend-Code sichtbar)
-
-#### UI-Anpassung
-
-In der Navbar werden geschützte Links visuell deaktiviert:
-
-- Ausgegraut wenn nicht eingeloggt
-- Voll funktionsfähig nach Login
-
-**Fazit**: Geschützte Seiten sind durch **AuthGuard** auf Route-Ebene und **HTTP-Interceptor** auf API-Ebene abgesichert. Der OAuth2-Flow mit Keycloak stellt sichere Authentifizierung sicher.
 
 ---
 
@@ -498,7 +521,7 @@ In der Navbar werden geschützte Links visuell deaktiviert:
 
 #### Angular Reactive Forms mit Signals
 
-Die Anwendung nutzt das neue **Signal-basierte Forms API** von Angular 21:
+Die Anwendung nutzt die neuen **Signal Forms** von Angular 21:
 
 **Datei**: `src/app/package-form/package-form.ts`
 
@@ -515,37 +538,13 @@ packageForm = form(this.packageModel, (fieldPath) => {
   required(fieldPath.sender.country, { message: 'Country is required' });
 
   // Recipient validations
-  required(fieldPath.recipient.name, { message: 'Name is required' });
-  required(fieldPath.recipient.street, { message: 'Street is required' });
-  required(fieldPath.recipient.city, { message: 'City is required' });
-  required(fieldPath.recipient.zipCode, { message: 'ZIP code is required' });
-  max(fieldPath.recipient.zipCode, 99999, { message: 'ZIP code cannot exceed 5 digits' });
-  required(fieldPath.recipient.country, { message: 'Country is required' });
+  ...
 
   // Package details validations
   min(fieldPath.weight, 0.01, { message: 'Weight must be greater than 0' });
-  min(fieldPath.width, 0.01, { message: 'Width must be greater than 0' });
-  min(fieldPath.height, 0.01, { message: 'Height must be greater than 0' });
-  min(fieldPath.length, 0.01, { message: 'Length must be greater than 0' });
+  ...
 });
 ```
-
-#### Validierungsregeln
-
-**Textfelder (Name, Street, City, Country)**:
-
-- `required`: Feld darf nicht leer sein
-- Benutzerdefinierte Fehlermeldungen
-
-**Numerische Felder (ZIP Code)**:
-
-- `required`: Muss ausgefüllt sein
-- `max(99999)`: Maximal 5-stellig
-
-**Abmessungen (Weight, Width, Height, Length)**:
-
-- `min(0.01)`: Muss größer als 0 sein
-- Verhindert negative Werte oder 0
 
 #### HTML-Binding mit Field-Directive
 
@@ -571,11 +570,10 @@ Die `[field]` Directive:
 ```typescript
 onSubmit(event: Event) {
   event.preventDefault();
-  if (this.packageForm().valid()) {
+  if (this.packageForm().valid()) { // Validierung wird ausgelöst
     const credentials = this.packageModel();
     this.submitPackage.emit(credentials);
   }
-  // Form wird nicht abgeschickt wenn ungültig
 }
 ```
 
@@ -593,17 +591,12 @@ Zusätzlich zu Angular-Validierung nutzen wir native HTML5-Validierung:
 />
 ```
 
-- `type="number"`: Nur Zahlen erlaubt
-- `type="email"`: Email-Format (falls verwendet)
-- `step="0.01"`: Dezimalzahlen mit 2 Nachkommastellen
-
 #### Visuelle Feedback
 
 Fehlerhafte Felder werden visuell hervorgehoben:
 
-- Rote Umrandung bei ungültigen Feldern
-- Fehlermeldungen unter dem Feld
-- Submit-Button nur aktiv wenn Form gültig
+- Fehlermeldungen bei dem Feld bei HTML-Validierung
+- Bei Angular-Validierung werden Fehler in der globalen Fehlermeldungsliste angezeigt
 
 #### TypeScript-Typsicherheit
 
@@ -617,21 +610,6 @@ export interface PackageModel {
   length: number;
 }
 ```
-
-TypeScript stellt sicher, dass:
-
-- Nur definierte Felder existieren
-- Datentypen korrekt sind
-- Zur Compile-Zeit Fehler erkannt werden
-
-#### Mehrschichtige Validierung
-
-1. **Client-seitig (Angular Forms)**: Sofortiges Feedback
-2. **HTML5-Validierung**: Browser-native Prüfung
-3. **TypeScript-Typen**: Compile-Zeit-Sicherheit
-4. **Backend-Validierung**: Zusätzliche Sicherheit auf Server-Seite
-
-**Fazit**: Die Dateneingabe wird durch **Angular Signal-basierte Reactive Forms** mit deklarativen Validatoren sichergestellt. Mehrschichtige Validierung (Client, HTML5, TypeScript) garantiert korrekte Daten.
 
 ---
 
@@ -678,17 +656,11 @@ export class ErrorMessageService {
 
 ```typescript
 onTrack(packageData: TrackingModel) {
-  this.loading.set(true);
-  this.delivery.set(null);
-
+  ...
   this.deliveryService
-    .getDelivery(packageData)
-    .pipe(finalize(() => this.loading.set(false)))  // Cleanup
+    .trackPackage(packageData)
     .subscribe({
-      next: (delivery) => {
-        this.delivery.set(delivery);
-        this.fetchHistory(packageData);
-      },
+      ...
       error: (err) => {
         if (err.status === 404) {
           this.errorMessageService.showMessage(
@@ -703,80 +675,9 @@ onTrack(packageData: TrackingModel) {
 }
 ```
 
-#### Spezifische HTTP-Status-Behandlung
-
-Die Anwendung unterscheidet zwischen verschiedenen Fehlertypen:
-
-**404 - Not Found**:
-
-- Benutzerfreundliche Meldung: "Delivery not found..."
-- User kann Eingabe korrigieren
-
-**500 - Server Error**:
-
-- Generische Meldung: "A server error occurred..."
-- Hinweis zum späteren Versuch
-
-**Network Errors**:
-
-- Keine Verbindung zum Server
-- Fehlermeldung über Service-Unavailability
-
-**401/403 - Authorization Errors**:
-
-- Automatischer Logout
-- Redirect zum Login (durch AuthInterceptor)
-
-#### RxJS Error Handling
-
-**finalize Operator**:
-
-```typescript
-.pipe(finalize(() => this.loading.set(false)))
-```
-
-- Wird immer ausgeführt (success oder error)
-- Setzt Loading-Spinner zurück
-- Cleanup-Logik
-
-**catchError Operator** (alternative Verwendung):
-
-```typescript
-.pipe(
-  catchError((error) => {
-    this.errorMessageService.showServerError();
-    return of(null);  // Fallback-Wert
-  })
-)
-```
-
-#### UI-Feedback
-
-**Während Request**:
-
-- Loading-Spinner wird angezeigt
-- Submit-Button deaktiviert
-
-**Bei Fehler**:
-
-- Fehlermeldung prominent angezeigt
-- Rotes Alert-Banner (DaisyUI)
-- Automatisches Ausblenden nach 5 Sekunden
-- User kann Eingabe korrigieren
-
-**Bei Erfolg**:
-
-- Erfolgsmeldung (z.B. Tracking-ID)
-- Navigation zur nächsten Seite
-- Daten werden angezeigt
-
 #### Error Message Display
 
 In der App-Komponente oder Navbar wird die Fehlermeldung angezeigt:
-
-```typescript
-errorMessage = this.errorMessageService.error;
-```
 
 ```html
 @if (errorMessage()) {
@@ -785,64 +686,3 @@ errorMessage = this.errorMessageService.error;
 </div>
 }
 ```
-
-#### Backend-Integration
-
-Das Backend sollte strukturierte Fehler zurückgeben:
-
-```typescript
-interface ErrorResponse {
-  status: number;
-  message: string;
-  details?: any;
-}
-```
-
-Die Anwendung kann diese parsen und spezifisch behandeln.
-
-#### Resilience-Strategien
-
-1. **Optimistic UI**: UI-Updates vor Backend-Bestätigung
-2. **Retry-Logic**: Automatische Wiederholungsversuche (bei Bedarf)
-3. **Offline-Detection**: Prüfung der Netzwerkverbindung
-4. **Fallback-Werte**: Default-Daten bei Fehlern
-5. **Graceful Degradation**: Teilfunktionalität bei Fehlern
-
-#### Logging und Monitoring
-
-In Production würden Fehler zusätzlich geloggt:
-
-```typescript
-error: (err) => {
-  console.error('API Error:', err);
-  // Sentry.captureException(err);  // Error Tracking
-  this.errorMessageService.showServerError();
-};
-```
-
-**Fazit**: Backend-Fehler werden durch einen **zentralen ErrorMessageService** behandelt, der benutzerfreundliche Meldungen anzeigt. RxJS-Operatoren (`finalize`, `catchError`) stellen robuste Fehlerbehandlung sicher. Spezifische HTTP-Status-Codes werden unterschiedlich behandelt.
-
----
-
-## 7. Fragebogen
-
-Der Fragebogen in Moodle wird rechtzeitig vor der Präsentation beantwortet. Eine Benachrichtigung per E-Mail wird erwartet und beachtet.
-
-**Status**: Ausstehend / Wird zeitgerecht ausgefüllt
-
----
-
-## Zusammenfassung
-
-Diese Dokumentation beantwortet alle gestellten Fragen zur Projektarbeit:
-
-1. ✅ **Architektur**: Klar strukturierte Angular-Anwendung mit Services, Guards, Interceptors
-2. ✅ **Navigation**: Öffentliche und geschützte Routen mit klaren Flows
-3. ✅ **Tests**: Szenarien für alle Hauptfunktionen (Screenshots einzufügen)
-4. ✅ **KI-Einsatz**: GitHub Copilot für Boilerplate, Forms, Error-Handling
-5. ✅ **URL-Management**: Zentrale Konfiguration in `environments.ts`
-6. ✅ **Login-Schutz**: AuthGuard + OAuth2/OIDC mit Keycloak
-7. ✅ **Validierung**: Angular Signal Forms mit deklarativen Validatoren
-8. ✅ **Fehlerbehandlung**: Zentraler Service mit benutzerfreundlichen Meldungen
-
-Die Anwendung folgt Best Practices von Angular und ist wartbar, erweiterbar und benutzerfreundlich gestaltet.
